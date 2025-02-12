@@ -9,12 +9,29 @@ const Global = styled.createGlobalStyle`
     font-style: swap;
   }
 
+  body {
+    width: 100vw;
+    height: 100vh;
+  }
+
   * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 
     font-family: "Pretendard", sans-serif;
+  }
+
+  ul,
+  ol {
+    list-style: none;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+
+    cursor: pointer;
   }
 `;
 

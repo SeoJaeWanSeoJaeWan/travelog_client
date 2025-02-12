@@ -1,20 +1,7 @@
-import Day from "@/components/atoms/day";
-import Logs from "@/components/atoms/logs";
-import Pin from "@/components/atoms/pin";
-import PinType from "@/components/atoms/pinType";
-import PinUrl from "@/components/atoms/pinUrl";
+import HomeTemplate from "@/components/templates/homeTemplate";
 
 const Home = () => {
-  return (
-    <>
-      Hellow
-      <Logs />
-      <Day />
-      <PinType />
-      <Pin />
-      <PinUrl />
-    </>
-  );
+  return <HomeTemplate />;
 };
 
 export default Home;
