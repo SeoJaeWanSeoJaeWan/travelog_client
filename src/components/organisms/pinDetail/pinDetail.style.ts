@@ -1,38 +1,10 @@
+import SectionStyle from "@/components/atoms/section/section.style";
 import styled from "styled-components";
 
-const Container = styled.section`
-  position: relative;
-
-  width: 400px;
+const Container = styled(SectionStyle)`
   height: 40%;
 
-  margin-left: 10px;
-  padding: 15px;
   padding-bottom: 5px;
-
-  background-color: ${(props) => props.theme.color.white};
-  border-radius: 10px;
-
-  box-shadow: 0 0 10px ${(props) => props.theme.color.shadow};
-`;
-
-const InfoContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 5px;
-
-  width: 90%;
-`;
-
-const InfoWrapper = styled.div`
-  flex: 1;
-`;
-
-const Type = styled.img`
-  width: 40px;
-  height: auto;
-  aspect-ratio: 1/1;
 `;
 
 const UrlList = styled.ul`
@@ -48,7 +20,7 @@ const UrlList = styled.ul`
 `;
 
 const Description = styled.p`
-  width: 90%;
+  width: 100%;
 
   margin-top: 5px;
 
@@ -92,11 +64,8 @@ const Button = styled.button`
   }
 `;
 
-const PinStyle = {
+const PinDetailStyle = {
   Container,
-  InfoContainer,
-  InfoWrapper,
-  Type,
   Description,
   Image,
   UrlList,
@@ -104,4 +73,4 @@ const PinStyle = {
   Button,
 };
 
-export default PinStyle;
+export default PinDetailStyle;

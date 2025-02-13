@@ -2,8 +2,9 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import BoardStyle from "./board.style";
 import { useState } from "react";
 import Log from "@/components/organisms/log";
-import Day from "@/components/organisms/day";
-import Pin from "@/components/organisms/pin";
+import DayList from "@/components/organisms/dayList";
+import PinDetail from "@/components/organisms/pinDetail";
+import DayDetail from "@/components/organisms/dayDetail";
 
 const Board = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -16,8 +17,9 @@ const Board = () => {
     <BoardStyle.Container $isOpen={isOpen}>
       <Log />
       <BoardStyle.SecondTab>
-        <Day />
-        <Pin />
+        <DayList />
+        <DayDetail />
+        <PinDetail />
       </BoardStyle.SecondTab>
       <BoardStyle.ToggleButton onClick={handleToggle}>
         {isOpen ? <FaAngleLeft /> : <FaAngleRight />}
