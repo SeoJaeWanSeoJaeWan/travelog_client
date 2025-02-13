@@ -73,11 +73,6 @@ const Item = styled.button`
   font-size: ${(props) => props.theme.font(16)};
   text-align: left;
 
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  word-break: break-all;
-
   &:hover {
     background-color: ${(props) => props.theme.color.lightGray};
   }

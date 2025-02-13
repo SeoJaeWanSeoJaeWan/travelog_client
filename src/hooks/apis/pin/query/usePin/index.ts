@@ -1,5 +1,4 @@
 import { GET } from "@/apis";
-import extractQueryData from "@/hooks/apis/utils/extractQueryData";
 import Pin from "@/types/apis/pin";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -15,7 +14,7 @@ const usePin = (pinId: number) => {
     queryFn: () => pin(pinId),
   });
 
-  return extractQueryData<Pin>(query);
+  return query;
 };
 
 export const useRefetchPin = () => {

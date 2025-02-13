@@ -1,5 +1,4 @@
 import { GET } from "@/apis";
-import extractQueryData from "@/hooks/apis/utils/extractQueryData";
 import PriceType from "@/types/apis/priceType";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -15,7 +14,7 @@ const usePriceType = () => {
     queryFn: priceType,
   });
 
-  return extractQueryData<PriceType[]>(query);
+  return query;
 };
 
 export const useRefetchPriceType = () => {

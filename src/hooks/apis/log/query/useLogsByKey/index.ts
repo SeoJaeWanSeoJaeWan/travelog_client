@@ -1,5 +1,4 @@
 import { GET } from "@/apis";
-import extractQueriesData from "@/hooks/apis/utils/extractQueriesData";
 import { Logs } from "@/types/apis/log";
 import { useQueries, useQueryClient } from "@tanstack/react-query";
 
@@ -25,7 +24,7 @@ const useLogsByKey = (keys: string[]) => {
     },
   });
 
-  return extractQueriesData<Logs[]>(query);
+  return query;
 };
 
 export const useRefetchLogsByKey = () => {

@@ -49,6 +49,7 @@ const Search = () => {
           {places.map((place) => (
             <li key={place.content}>
               <SearchStyle.Item
+                className="text-ellipsis"
                 onClick={() =>
                   handleSelectPlace(place.position.lat, place.position.lng)
                 }

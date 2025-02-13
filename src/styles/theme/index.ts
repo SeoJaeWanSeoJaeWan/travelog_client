@@ -1,8 +1,9 @@
 export const color = {
   black: "#0e100f",
   white: "#ffffff",
-  gray: "#A0A0A0",
-  lightGray: "#E0E0E0",
+  darkGray: "#A0A0A0",
+  gray: "#E0E0E0",
+  lightGray: "#F5F5F5",
 };
 
 export const media = {

@@ -22,6 +22,21 @@ const Global = styled.createGlobalStyle`
     font-family: "Pretendard", sans-serif;
   }
 
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: ${(props) => props.theme.color.lightGray};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.theme.color.gray};
+    border-radius: 10px;
+
+    cursor: pointer;
+  }
+
   ul,
   ol {
     list-style: none;
@@ -32,6 +47,13 @@ const Global = styled.createGlobalStyle`
     border: none;
 
     cursor: pointer;
+  }
+
+  .text-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
   }
 `;
 
