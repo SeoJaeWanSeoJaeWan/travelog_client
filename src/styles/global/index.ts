@@ -55,6 +55,11 @@ const Global = styled.createGlobalStyle`
     text-overflow: ellipsis;
     word-break: break-all;
   }
+
+  #modal {
+    position: relative;
+    z-index: 1000;
+  }
 `;
 
 export default Global;

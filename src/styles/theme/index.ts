@@ -4,6 +4,8 @@ export const color = {
   darkGray: "#A0A0A0",
   gray: "#E0E0E0",
   lightGray: "#F5F5F5",
+
+  shadow: "rgba(0, 0, 0, 0.5)",
 };
 
 export const media = {
