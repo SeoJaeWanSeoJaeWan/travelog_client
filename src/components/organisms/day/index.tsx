@@ -3,12 +3,14 @@ import DayStyle from "./day.style";
 import LineStyle from "@/components/atoms/line/line.style";
 import numberWithCommas from "@/utils/numberWithCommas";
 import { FaPlus } from "react-icons/fa6";
-import { CgClose } from "react-icons/cg";
+import Close from "@/components/atoms/close";
 
 const Day = () => {
   return (
     <DayStyle.Container>
-      <Title as={"h3"}>여행 제목</Title>
+      <Title as={"h3"} width={"90%"}>
+        여행 제목
+      </Title>
 
       <LineStyle />
 
@@ -156,9 +158,7 @@ const Day = () => {
         </li>
       </DayStyle.DayList>
 
-      <DayStyle.Cancel>
-        <CgClose />
-      </DayStyle.Cancel>
+      <Close />
     </DayStyle.Container>
   );
 };

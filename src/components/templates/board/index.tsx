@@ -1,8 +1,9 @@
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import BoardStyle from "./board.style";
 import { useState } from "react";
-import Log from "@/components/modelcules/log";
-import Day from "@/components/modelcules/day";
+import Log from "@/components/organisms/log";
+import Day from "@/components/organisms/day";
+import Pin from "@/components/organisms/pin";
 
 const Board = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -16,6 +17,7 @@ const Board = () => {
       <Log />
       <BoardStyle.SecondTab>
         <Day />
+        <Pin />
       </BoardStyle.SecondTab>
       <BoardStyle.ToggleButton onClick={handleToggle}>
         {isOpen ? <FaAngleLeft /> : <FaAngleRight />}

@@ -12,6 +12,8 @@ const Container = styled.section`
 
   border-radius: 10px;
   background-color: ${(props) => props.theme.color.white};
+
+  box-shadow: 0 0 10px ${(props) => props.theme.color.shadow};
 `;
 
 const TotalPrice = styled.p`
@@ -58,31 +60,11 @@ const Day = styled.button<DayProps>`
   color: ${(props) => props.theme.color.white};
 `;
 
-const Cancel = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 20px;
-  height: 20px;
-
-  border: none;
-  background-color: transparent;
-
-  color: ${(props) => props.theme.color.black};
-  font-size: ${(props) => props.theme.font(16)};
-`;
-
 const DayStyle = {
   Container,
   TotalPrice,
   DayList,
   Day,
-  Cancel,
 };
 
 export default DayStyle;

@@ -49,6 +49,11 @@ const Global = styled.createGlobalStyle`
     cursor: pointer;
   }
 
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   .text-ellipsis {
     overflow: hidden;
     white-space: nowrap;

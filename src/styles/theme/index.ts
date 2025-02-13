@@ -6,7 +6,7 @@ export const color = {
   gray: "#E0E0E0",
   lightGray: "#F5F5F5",
 
-  shadow: "rgba(0, 0, 0, 0.5)",
+  shadow: "rgba(0, 0, 0, 0.3)",
 };
 
 export const media = {
