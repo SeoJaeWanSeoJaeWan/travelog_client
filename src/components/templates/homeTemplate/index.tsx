@@ -1,12 +1,12 @@
 import KakaoMap from "@/components/atoms/map/kakaoMap";
 import HomeTemplateStyle from "./homeTemplate.style";
-import Search from "@/components/atoms/search";
+import Board from "@/components/organisms/board";
 
 const HomeTemplate = () => {
   return (
     <HomeTemplateStyle.Container>
       <KakaoMap>
-        <Search />
+        <Board />
       </KakaoMap>
     </HomeTemplateStyle.Container>
   );
