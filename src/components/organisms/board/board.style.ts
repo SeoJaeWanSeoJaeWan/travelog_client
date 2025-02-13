@@ -29,7 +29,6 @@ const Container = styled.div<ContainerProps>`
   z-index: 2;
 
   display: flex;
-  gap: 10px;
 
   width: auto;
   height: 100vh;
@@ -44,11 +43,17 @@ const Container = styled.div<ContainerProps>`
         `}
 `;
 
+const SecondTab = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 const ToggleButton = styled.button`
   position: absolute;
-  top: 50%;
+  top: 10%;
   right: 0;
-  transform: translate(100%, -50%);
+  transform: translateX(100%);
 
   display: flex;
   justify-content: center;
@@ -68,6 +73,7 @@ const ToggleButton = styled.button`
 
 const BoardStyle = {
   Container,
+  SecondTab,
   ToggleButton,
 };
 
