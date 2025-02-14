@@ -22,6 +22,8 @@ const Input = styled(CommonInput)`
 
 const TextArea = styled(CommonTextArea)`
   flex: 1;
+
+  min-height: 150px;
 `;
 
 const Button = styled.button`

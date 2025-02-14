@@ -11,6 +11,7 @@ import ImageUpload from "@/components/atoms/imageUpload";
 import InputForm from "@/components/modelcules/inputForm";
 import usePinFormUpdate from "@/hooks/utils/usePinFormUpdate";
 import Url from "@/components/modelcules/url";
+import { MdDelete } from "react-icons/md";
 
 const PinDetail = () => {
   const [isAddLink, setisAddLink] = useState(false);
@@ -97,9 +98,30 @@ const PinDetail = () => {
                 />
               )}
             >
-              123
+              123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123
             </HoverForm>
           </PinDetailStyle.Description>
+
+          <PinDetailStyle.PriceLine>
+            <PinDetailStyle.TotalPrice>
+              <HoverForm
+                className="price"
+                hidden
+                Form={(hiddenForm) => (
+                  <InputForm
+                    type="input"
+                    className="price"
+                    onSubmit={submitInputForm("price", hiddenForm)}
+                  />
+                )}
+              >
+                비용 : <strong>100,000</strong>원
+              </HoverForm>
+            </PinDetailStyle.TotalPrice>
+            <PinDetailStyle.DeleteButton>
+              <MdDelete size={18} />
+            </PinDetailStyle.DeleteButton>
+          </PinDetailStyle.PriceLine>
 
           <Url />
 

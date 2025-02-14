@@ -5,8 +5,6 @@ const Container = styled(SectionStyle)`
   display: flex;
   flex-direction: column;
 
-  height: 350px;
-
   padding: 0;
   padding-bottom: 5px;
 `;
@@ -30,6 +28,36 @@ const Description = styled.div`
   word-break: break-all;
 `;
 
+const PriceLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+
+  padding: 5px 0;
+`;
+
+const TotalPrice = styled.p`
+  width: calc(100% - 25px);
+  font-size: ${(props) => props.theme.font(14)};
+
+  strong {
+    font-weight: 600;
+    font-size: ${(props) => props.theme.font(16)};
+  }
+`;
+
+const DeleteButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 20px;
+  height: 20px;
+
+  color: ${(props) => props.theme.color.red};
+`;
+
 const Image = styled.img`
   width: 100%;
   height: 90px;
@@ -50,6 +78,9 @@ const PinDetailStyle = {
   PinBox,
   Description,
   Image,
+  TotalPrice,
+  PriceLine,
+  DeleteButton,
 };
 
 export default PinDetailStyle;

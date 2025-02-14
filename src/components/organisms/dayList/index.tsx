@@ -4,7 +4,7 @@ import ListLayout from "@/components/modelcules/listLayout";
 
 const Day = () => {
   return (
-    <ListLayout title={"여행 제목"} price={100000}>
+    <ListLayout title={"여행 제목"} price={100000} onDelete={() => {}}>
       <li>
         <DayListStyle.Day>1</DayListStyle.Day>
       </li>

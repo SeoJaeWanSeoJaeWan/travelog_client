@@ -7,6 +7,13 @@ const Conatiner = styled(SectionStyle)`
   margin-top: 10px;
 `;
 
+const PriceLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+`;
+
 const TotalPrice = styled.p`
   font-size: ${(props) => props.theme.font(14)};
 
@@ -14,6 +21,17 @@ const TotalPrice = styled.p`
     font-weight: 600;
     font-size: ${(props) => props.theme.font(16)};
   }
+`;
+
+const DeleteButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 20px;
+  height: 20px;
+
+  color: ${(props) => props.theme.color.red};
 `;
 
 const List = styled.ul`
@@ -33,7 +51,9 @@ const List = styled.ul`
 
 const ListLayoutStyle = {
   Conatiner,
+  PriceLine,
   TotalPrice,
+  DeleteButton,
   List,
 };
 
