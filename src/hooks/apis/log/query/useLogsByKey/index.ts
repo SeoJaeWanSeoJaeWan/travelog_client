@@ -3,7 +3,7 @@ import { Logs } from "@/types/apis/log";
 import { useQueries, useQueryClient } from "@tanstack/react-query";
 
 const logsByKey = (key: string) => {
-  return GET<Logs[]>(`/logs?key=${key}`);
+  return GET<Logs>(`/logs?key=${key}`);
 };
 
 const LOG_BY_KEY_QUERY_KEY = ["logsByKey"];

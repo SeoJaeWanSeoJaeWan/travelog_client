@@ -16,12 +16,10 @@ const useCheckKey = () => {
 
   const handleSubmit = (
     body: CheckKey,
-    onSuccess: () => void,
-    onError: () => void
+    onSuccess: (data: { key: string }) => void
   ) => {
     mutation.mutate(body, {
-      onSuccess: onSuccess,
-      onError: onError,
+      onSuccess,
     });
   };
 

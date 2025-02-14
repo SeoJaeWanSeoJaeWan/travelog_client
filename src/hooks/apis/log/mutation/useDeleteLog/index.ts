@@ -10,7 +10,10 @@ const useDeleteLog = () => {
     mutationFn: deleteLog,
   });
 
-  const handleSubmit = (logId: number, onSuccess: (key: string) => void) => {
+  const handleSubmit = (
+    logId: number,
+    onSuccess: (data: { key: string }) => void
+  ) => {
     mutation.mutate(logId, {
       onSuccess,
     });

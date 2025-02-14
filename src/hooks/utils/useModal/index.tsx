@@ -27,8 +27,6 @@ export const ModalProvider = (props: PropsWithChildren) => {
   const modalRef = useRef<HTMLDivElement>(document.querySelector("#modal")!);
   const [modalState, setModalState] = useState<ModalState | null>(null);
 
-  console.log(modalState);
-
   const createModal = (modalState: ModalState) => {
     setModalState(modalState);
 

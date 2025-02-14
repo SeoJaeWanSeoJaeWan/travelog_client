@@ -14,7 +14,10 @@ const useCreateLog = () => {
     mutationFn: createLog,
   });
 
-  const handleSubmit = (body: CreateLog, onSuccess: (key: string) => void) => {
+  const handleSubmit = (
+    body: CreateLog,
+    onSuccess: (data: { key: string }) => void
+  ) => {
     mutation.mutate(body, {
       onSuccess,
     });
