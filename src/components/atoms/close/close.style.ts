@@ -4,6 +4,7 @@ const Container = styled.button`
   position: absolute;
   top: 15px;
   right: 15px;
+  z-index: 2;
 
   display: flex;
   justify-content: center;
