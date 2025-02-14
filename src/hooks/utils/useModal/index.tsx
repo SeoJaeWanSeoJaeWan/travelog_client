@@ -1,4 +1,4 @@
-import Modal from "@/components/organisms/modal/indext";
+import Modal from "@/components/organisms/modal";
 import {
   createContext,
   PropsWithChildren,

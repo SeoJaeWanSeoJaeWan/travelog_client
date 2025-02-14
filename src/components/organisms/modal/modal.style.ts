@@ -48,7 +48,7 @@ const Text = styled.p<TextProps>`
   font-size: ${(props) =>
     props.$isInfo ? props.theme.font(16) : props.theme.font(14)};
   text-align: ${(props) => (props.$isInfo ? "center" : "left")};
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 const Input = styled(CommonInput)`
@@ -74,7 +74,7 @@ const Button = styled.button`
   width: 40px;
   height: 25px;
 
-  background-color: ${(props) => props.theme.color.darkGray};
+  background-color: ${(props) => props.theme.color.primary};
   border-radius: 5px;
 
   color: ${(props) => props.theme.color.white};
