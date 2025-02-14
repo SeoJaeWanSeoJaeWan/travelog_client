@@ -17,10 +17,9 @@ const usePinFormUpdate = () =>
       onSuccess();
     };
 
-    const submitInputForm = (name: string, onSuccess: () => void) => {
-      console.log(name);
-
-      return (e: FormEvent<HTMLFormElement>) => {
+    const submitInputForm =
+      (name: string, onSuccess: () => void) =>
+      (e: FormEvent<HTMLFormElement>) => {
         console.log(e);
         e.preventDefault();
 
@@ -36,7 +35,6 @@ const usePinFormUpdate = () =>
         // });
         onSuccess();
       };
-    };
 
     const submitFileForm = (e: ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files![0];

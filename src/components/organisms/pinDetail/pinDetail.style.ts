@@ -28,17 +28,22 @@ const Description = styled.div`
   word-break: break-all;
 `;
 
-const PriceLine = styled.div`
+const TitleLine = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 5px;
 
-  padding: 5px 0;
+  width: 100%;
 `;
 
 const TotalPrice = styled.div`
-  width: calc(100% - 25px);
+  width: 100%;
+  height: 28px;
+
+  margin: 2px 0;
+
+  text-align: right;
   font-size: ${(props) => props.theme.font(14)};
 
   strong {
@@ -79,7 +84,7 @@ const PinDetailStyle = {
   Description,
   Image,
   TotalPrice,
-  PriceLine,
+  TitleLine,
   DeleteButton,
 };
 

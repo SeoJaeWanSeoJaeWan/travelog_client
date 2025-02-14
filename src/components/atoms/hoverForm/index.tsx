@@ -42,13 +42,16 @@ const HoverForm = (props: HoverFormProps) => {
 
   return (
     <>
-      <HoverFormStyle.Container className={className}>
-        {!isHiddenChildren && children}
-        <HoverFormStyle.Background
-          $radius={radius}
-          onClick={handleToggleForm}
-        />
-      </HoverFormStyle.Container>
+      {!isHiddenChildren && (
+        <HoverFormStyle.Container className={className}>
+          {children}
+          <HoverFormStyle.Background
+            type={"button"}
+            $radius={radius}
+            onClick={handleToggleForm}
+          />
+        </HoverFormStyle.Container>
+      )}
       {isActiveForm && Form(hiddenForm)}
     </>
   );

@@ -14,6 +14,7 @@ import Url from "@/components/modelcules/url";
 import { MdDelete } from "react-icons/md";
 import Marker from "@/components/modelcules/marker/indext";
 import Line from "@/components/atoms/line";
+import numberWithCommas from "@/utils/numberWithCommas";
 
 const PinDetail = () => {
   const [isAddLink, setisAddLink] = useState(false);
@@ -97,21 +98,26 @@ const PinDetail = () => {
         </PinDetailStyle.PinBox>
 
         <PinDetailStyle.Wrapper>
-          <HoverForm
-            className="title"
-            hidden
-            Form={(hiddenForm) => (
-              <InputForm
-                type="input"
-                className="title"
-                onSubmit={submitInputForm("title", hiddenForm)}
-              />
-            )}
-          >
-            <Title as={"h4"} width={"100%"}>
-              123
-            </Title>
-          </HoverForm>
+          <PinDetailStyle.TitleLine>
+            <HoverForm
+              className="title"
+              hidden
+              Form={(hiddenForm) => (
+                <InputForm
+                  type="input"
+                  className="title"
+                  onSubmit={submitInputForm("title", hiddenForm)}
+                />
+              )}
+            >
+              <Title as={"h4"} width={"100%"}>
+                123
+              </Title>
+            </HoverForm>
+            <PinDetailStyle.DeleteButton>
+              <MdDelete size={18} />
+            </PinDetailStyle.DeleteButton>
+          </PinDetailStyle.TitleLine>
 
           <PinDetailStyle.Description>
             <HoverForm
@@ -129,26 +135,21 @@ const PinDetail = () => {
             </HoverForm>
           </PinDetailStyle.Description>
 
-          <PinDetailStyle.PriceLine>
-            <PinDetailStyle.TotalPrice>
-              <HoverForm
-                className="price"
-                hidden
-                Form={(hiddenForm) => (
-                  <InputForm
-                    type="input"
-                    className="price"
-                    onSubmit={submitInputForm("price", hiddenForm)}
-                  />
-                )}
-              >
-                비용 : <strong>100,000</strong>원
-              </HoverForm>
-            </PinDetailStyle.TotalPrice>
-            <PinDetailStyle.DeleteButton>
-              <MdDelete size={18} />
-            </PinDetailStyle.DeleteButton>
-          </PinDetailStyle.PriceLine>
+          <PinDetailStyle.TotalPrice>
+            <HoverForm
+              className="price"
+              hidden
+              Form={(hiddenForm) => (
+                <InputForm
+                  type="input"
+                  className="price"
+                  onSubmit={submitInputForm("price", hiddenForm)}
+                />
+              )}
+            >
+              비용 : <strong>{numberWithCommas(1000000)}</strong>원
+            </HoverForm>
+          </PinDetailStyle.TotalPrice>
 
           <Url />
 
