@@ -5,11 +5,32 @@ import Drag from "@/components/atoms/drag";
 import { DraggingProvider } from "@/hooks/utils/useDragging";
 import { useState } from "react";
 
-const Day = () => {
+interface DayListProps {
+  handleStep: (step: number) => void;
+}
+
+const DayList = (props: DayListProps) => {
+  const { handleStep } = props;
   const [state] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+  const [className, setClassName] = useState("");
+  const [index, setIndex] = useState(2);
+
+  const handleNext = () => {
+    if (className === "hide") handleStep(index);
+  };
 
   return (
-    <ListLayout title={"여행 제목"} price={100000} onDelete={() => {}}>
+    <ListLayout
+      title={"여행 제목"}
+      price={100000}
+      className={className}
+      onDelete={() => {}}
+      onClose={() => {
+        setClassName("hide");
+        setIndex(0);
+      }}
+      onAnimationEnd={handleNext}
+    >
       <DraggingProvider>
         {state.map((value) => (
           <li key={value}>
@@ -20,7 +41,14 @@ const Day = () => {
               }}
               onSubmit={() => {}}
             >
-              <DayListStyle.Day>{value}</DayListStyle.Day>
+              <DayListStyle.Day
+                onClick={() => {
+                  setIndex(2);
+                  setClassName("hide");
+                }}
+              >
+                {value}
+              </DayListStyle.Day>
             </Drag>
           </li>
         ))}
@@ -35,4 +63,4 @@ const Day = () => {
   );
 };
 
-export default Day;
+export default DayList;

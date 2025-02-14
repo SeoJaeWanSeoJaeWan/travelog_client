@@ -9,15 +9,28 @@ import { MdDelete } from "react-icons/md";
 interface ListLayoutProps extends PropsWithChildren {
   title: string;
   price: number;
+  className?: string;
   onClose?: () => void;
   onDelete: () => void;
+  onAnimationEnd: () => void;
 }
 
 const ListLayout = (props: ListLayoutProps) => {
-  const { title, price, children, onClose, onDelete } = props;
+  const {
+    title,
+    price,
+    className,
+    children,
+    onClose,
+    onDelete,
+    onAnimationEnd,
+  } = props;
 
   return (
-    <ListLayoutStyle.Conatiner>
+    <ListLayoutStyle.Conatiner
+      className={className}
+      onAnimationEnd={onAnimationEnd}
+    >
       <Title as={"h3"} width={"90%"}>
         {title}
       </Title>

@@ -9,17 +9,23 @@ import DayDetail from "@/components/organisms/dayDetail";
 const Board = () => {
   const [isOpen, setIsOpen] = useState(true);
 
+  const [step, setStep] = useState(0);
+
+  const handleStep = (step: number) => {
+    setStep(step);
+  };
+
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
   return (
     <BoardStyle.Container $isOpen={isOpen}>
-      <Log />
+      <Log handleStep={handleStep} />
       <BoardStyle.SecondTab>
-        <DayList />
-        <DayDetail />
-        <PinDetail />
+        {step === 1 && <DayList handleStep={handleStep} />}
+        {step === 2 && <DayDetail handleStep={handleStep} />}
+        {step === 3 && <PinDetail handleStep={handleStep} />}
       </BoardStyle.SecondTab>
       <BoardStyle.ToggleButton onClick={handleToggle}>
         {isOpen ? <FaAngleLeft /> : <FaAngleRight />}

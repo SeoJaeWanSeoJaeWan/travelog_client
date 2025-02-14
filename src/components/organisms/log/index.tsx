@@ -5,7 +5,12 @@ import Title from "@/components/atoms/title";
 import useModal from "@/hooks/utils/useModal";
 import { BiExport } from "react-icons/bi";
 
-const Log = () => {
+interface LogProps {
+  handleStep: (step: number) => void;
+}
+
+const Log = (props: LogProps) => {
+  const { handleStep } = props;
   const { createModal } = useModal();
 
   const handleAddLog = () => {
@@ -39,7 +44,7 @@ const Log = () => {
 
       <LogStyle.List>
         <li>
-          <LogStyle.Item>
+          <LogStyle.Item onClick={() => handleStep(1)}>
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>

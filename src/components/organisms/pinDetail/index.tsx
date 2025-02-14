@@ -16,13 +16,25 @@ import Marker from "@/components/modelcules/marker/indext";
 import Line from "@/components/atoms/line";
 import numberWithCommas from "@/utils/numberWithCommas";
 
-const PinDetail = () => {
+interface PinDetailProps {
+  handleStep: (step: number) => void;
+}
+
+const PinDetail = (props: PinDetailProps) => {
+  const { handleStep } = props;
   const [isAddLink, setisAddLink] = useState(false);
   const {
     submitInputForm,
     // submitFileForm
   } = usePinFormUpdate();
   // 1
+
+  const [className, setClassName] = useState("");
+  const [index, setIndex] = useState(2);
+
+  const handleNext = () => {
+    if (className === "hide") handleStep(index);
+  };
 
   const handleToggleAddLink = () => {
     setisAddLink((prev) => !prev);
@@ -32,21 +44,12 @@ const PinDetail = () => {
     setisAddLink(false);
   };
 
-  const handleImageUpload =
-    (hiddenForm: () => void) => (e: ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files![0];
-
-      hiddenForm();
-
-      if (file.type.indexOf("image") === -1) {
-        return alert("이미지 파일만 업로드 가능합니다.");
-      }
-      console.log("image upload");
-    };
-
   return (
     <>
-      <PinDetailStyle.Container>
+      <PinDetailStyle.Container
+        className={className}
+        onAnimationEnd={handleNext}
+      >
         <Marker
           lat={33.450701}
           lng={126.570667}
@@ -72,14 +75,18 @@ const PinDetail = () => {
             ],
           ]}
         />
-        <Close />
+        <Close
+          onClick={() => {
+            setClassName("hide");
+            setIndex(2);
+            setisAddLink(false);
+          }}
+        />
 
         <HoverForm
           radius={"10px 10px 0 0"}
           className="image"
-          Form={(hiddenForm) => (
-            <ImageUpload onChange={handleImageUpload(hiddenForm)} />
-          )}
+          Form={(hiddenForm) => <ImageUpload onChange={() => {}} />}
         >
           <PinDetailStyle.Image
             src={
