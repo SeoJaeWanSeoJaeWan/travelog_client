@@ -2,8 +2,8 @@ import { IoMdDownload } from "react-icons/io";
 import LogStyle from "./log.style";
 import { FaPlus } from "react-icons/fa6";
 import Title from "@/components/atoms/title";
-import numberWithCommas from "@/utils/numberWithCommas";
 import useModal from "@/hooks/utils/useModal";
+import { BiExport } from "react-icons/bi";
 
 const Log = () => {
   const { createModal } = useModal();
@@ -43,9 +43,18 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
+          </LogStyle.Item>
+          <LogStyle.SaveButton>
+            <BiExport size={20} />
+          </LogStyle.SaveButton>
+        </li>
+        <li>
+          <LogStyle.Item>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
+              제목
+            </Title>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -53,9 +62,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -63,9 +70,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -73,9 +78,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -83,9 +86,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -93,9 +94,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -103,9 +102,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -113,9 +110,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -123,9 +118,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -133,9 +126,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -143,9 +134,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -153,9 +142,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -163,9 +150,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -173,9 +158,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -183,9 +166,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -193,9 +174,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -203,9 +182,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -213,9 +190,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -223,9 +198,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -233,9 +206,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -243,9 +214,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -253,9 +222,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -263,9 +230,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -273,9 +238,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -283,9 +246,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -293,9 +254,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -303,9 +262,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -313,9 +270,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -323,9 +278,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -333,9 +286,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
         <li>
@@ -343,19 +294,7 @@ const Log = () => {
             <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
-          </LogStyle.Item>
-        </li>
-        <li>
-          <LogStyle.Item>
-            <Title width={"100%"} as="p" className={"text-ellipsis"}>
-              제목
-            </Title>
-            <LogStyle.TotalPrice>
-              {numberWithCommas(1000000)}원
-            </LogStyle.TotalPrice>
+            <LogStyle.TotalPrice>3박 4일</LogStyle.TotalPrice>
           </LogStyle.Item>
         </li>
       </LogStyle.List>

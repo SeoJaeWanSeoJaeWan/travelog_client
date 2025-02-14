@@ -37,6 +37,10 @@ const List = styled.ul`
   height: calc(100% - 47px);
 
   overflow-y: auto;
+
+  li {
+    position: relative;
+  }
 `;
 
 const Item = styled.button`
@@ -53,6 +57,16 @@ const Item = styled.button`
   }
 `;
 
+const SaveButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+
+  width: 24px;
+  height: 24px;
+`;
+
 const TotalPrice = styled.p`
   margin-top: 5px;
 
@@ -67,6 +81,7 @@ const LogStyle = {
   Button,
   List,
   Item,
+  SaveButton,
   TotalPrice,
 };
 
