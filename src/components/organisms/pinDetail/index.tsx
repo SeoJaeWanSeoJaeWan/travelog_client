@@ -1,7 +1,7 @@
 import Title from "@/components/atoms/title";
 import PinDetailStyle from "./pinDetail.style";
 import Close from "@/components/atoms/close";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import LinkForm from "@/components/modelcules/linkForm";
 import Pin from "@/components/atoms/pin";
 import ListButton from "@/components/atoms/listBox";
