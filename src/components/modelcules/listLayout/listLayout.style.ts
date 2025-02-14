@@ -2,7 +2,7 @@ import SectionStyle from "@/components/atoms/section/section.style";
 import styled from "styled-components";
 
 const Conatiner = styled(SectionStyle)`
-  height: 190px;
+  height: 165px;
 
   margin-top: 10px;
 `;
@@ -42,7 +42,7 @@ const List = styled.ul`
   gap: 5px;
 
   width: 100%;
-  height: 100px;
+  height: 65px;
 
   overflow-y: auto;
 

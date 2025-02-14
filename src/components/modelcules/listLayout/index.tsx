@@ -15,6 +15,7 @@ interface ListLayoutProps extends PropsWithChildren {
 
 const ListLayout = (props: ListLayoutProps) => {
   const { title, price, children, onClose, onDelete } = props;
+
   return (
     <ListLayoutStyle.Conatiner>
       <Title as={"h3"} width={"90%"}>
