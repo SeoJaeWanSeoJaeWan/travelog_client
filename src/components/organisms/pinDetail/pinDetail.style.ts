@@ -2,75 +2,54 @@ import SectionStyle from "@/components/atoms/section/section.style";
 import styled from "styled-components";
 
 const Container = styled(SectionStyle)`
-  height: 40%;
+  display: flex;
+  flex-direction: column;
 
+  height: 350px;
+
+  padding: 0;
   padding-bottom: 5px;
 `;
 
-const UrlList = styled.ul`
-  width: 100%;
-  height: calc(100% - (120px + 11px + 40px));
+const Wrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 
-  overflow-y: auto;
-
-  a {
-    display: block;
-    font-size: ${(props) => props.theme.font(16)};
-  }
+  padding: 0 15px;
 `;
 
-const Description = styled.p`
+const Description = styled.div`
+  flex: 1;
+
   width: 100%;
 
-  margin-top: 5px;
+  padding: 5px 0;
 
   font-size: ${(props) => props.theme.font(14)};
   word-break: break-all;
 `;
 
 const Image = styled.img`
-  position: absolute;
-  top: 0;
-  right: -130px;
-
-  width: 120px;
+  width: 100%;
   height: 90px;
 
-  background-color: ${(props) => props.theme.color.white};
-  border-radius: 10px;
-  box-shadow: 0 0 10px ${(props) => props.theme.color.shadow};
+  border-radius: 10px 10px 0 0;
+  border: none;
 `;
 
-const ButtonList = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-
-  width: 100%;
-  height: 40px;
-`;
-
-const Button = styled.button`
-  width: 70px;
-  height: 30px;
-
-  border: 1px solid ${(props) => props.theme.color.darkGray};
-  border-radius: 5px;
-
-  &:hover {
-    background-color: ${(props) => props.theme.color.darkGray};
-    color: ${(props) => props.theme.color.white};
-  }
+const PinBox = styled.div`
+  position: absolute;
+  top: 15px;
+  left: 15px;
 `;
 
 const PinDetailStyle = {
   Container,
+  Wrapper,
+  PinBox,
   Description,
   Image,
-  UrlList,
-  ButtonList,
-  Button,
 };
 
 export default PinDetailStyle;

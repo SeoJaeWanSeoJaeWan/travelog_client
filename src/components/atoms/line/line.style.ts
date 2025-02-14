@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const LineStyle = styled.hr`
+const Line = styled.hr`
   width: 100%;
   height: 1px;
 
@@ -10,4 +10,4 @@ const LineStyle = styled.hr`
   background-color: ${(props) => props.theme.color.gray};
 `;
 
-export default LineStyle;
+export default Line;

@@ -4,8 +4,10 @@ import { FaBus, FaPersonRunning, FaTaxi, FaTrainSubway } from "react-icons/fa6";
 import { IoMdCafe, IoMdGlasses } from "react-icons/io";
 import { IoAirplane } from "react-icons/io5";
 import { MdFastfood } from "react-icons/md";
+import PinStyle from "./pin.style";
+import { IconType } from "react-icons";
 
-const Pins = {
+export const Pins: Record<PinName, IconType> = {
   식사: MdFastfood,
   숙박: FaHome,
   카페: IoMdCafe,
@@ -16,18 +18,23 @@ const Pins = {
   비행기: IoAirplane,
   택시: FaTaxi,
   도보: FaPersonRunning,
-} as const;
+};
 
 interface PinProps {
   name: PinName;
+  width: string;
 }
 
 const Pin = (props: PinProps) => {
-  const { name } = props;
+  const { name, width } = props;
 
   const Icon = Pins[name];
 
-  return <Icon size={20} />;
+  return (
+    <PinStyle.Container $width={width}>
+      <Icon size={20} />
+    </PinStyle.Container>
+  );
 };
 
 export default Pin;

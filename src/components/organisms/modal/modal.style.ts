@@ -1,4 +1,4 @@
-import InputStyle from "@/components/atoms/input/input.style";
+import CommonInput from "@/components/atoms/input/input.style";
 import styled from "styled-components";
 
 const Container = styled.aside`
@@ -51,7 +51,7 @@ const Text = styled.p<TextProps>`
   font-weight: 600;
 `;
 
-const Input = styled(InputStyle)`
+const Input = styled(CommonInput)`
   width: 100%;
 
   margin-bottom: 20px;

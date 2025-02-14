@@ -1,109 +1,121 @@
 import Title from "@/components/atoms/title";
 import PinDetailStyle from "./pinDetail.style";
 import Close from "@/components/atoms/close";
-import LineStyle from "@/components/atoms/line/line.style";
+import { ChangeEvent, useState } from "react";
+import LinkForm from "@/components/modelcules/linkForm";
+import Pin from "@/components/atoms/pin";
+import ListButton from "@/components/atoms/listBox";
+import HoverForm from "@/components/atoms/hoverForm";
+import PinSelector from "@/components/modelcules/pinSelector";
+import ImageUpload from "@/components/atoms/imageUpload";
+import InputForm from "@/components/modelcules/inputForm";
+import usePinFormUpdate from "@/hooks/utils/usePinFormUpdate";
+import Url from "@/components/modelcules/url";
 
 const PinDetail = () => {
+  const [isAddLink, setisAddLink] = useState(false);
+  const {
+    submitInputForm,
+    // submitFileForm
+  } = usePinFormUpdate();
+  // 1
+
+  const handleToggleAddLink = () => {
+    setisAddLink((prev) => !prev);
+  };
+
+  const handleCloseAddLink = () => {
+    setisAddLink(false);
+  };
+
+  const handleImageUpload =
+    (hiddenForm: () => void) => (e: ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files![0];
+
+      hiddenForm();
+
+      if (file.type.indexOf("image") === -1) {
+        return alert("이미지 파일만 업로드 가능합니다.");
+      }
+      console.log("image upload");
+    };
+
   return (
     <>
       <PinDetailStyle.Container>
-        <Title as={"h4"} width={"90%"}>
-          123
-        </Title>
-        <PinDetailStyle.Description>
-          dqwqdwqwddqwqdwqwddqwqdwqwddqwqdwqwddqwqdwqwddqwqdwqwddqwqdwqwddqwqdwqwddqwqdwqwddqwqdwqwd
-          dqwqdwqwddqwqdwqwd dqwqdwqwddqwqdwqwd dqwqdwqwddqwqdwqwd
-        </PinDetailStyle.Description>
-
-        <LineStyle />
-
         <Close />
 
-        <PinDetailStyle.UrlList>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-          <li>
-            <a href={"https://www.naver.com"} className="text-ellipsis">
-              https://www.naver.com https://www.naver.com https://www.naver.com
-            </a>
-          </li>
-        </PinDetailStyle.UrlList>
+        <HoverForm
+          radius={"10px 10px 0 0"}
+          className="image"
+          Form={(hiddenForm) => (
+            <ImageUpload onChange={handleImageUpload(hiddenForm)} />
+          )}
+        >
+          <PinDetailStyle.Image
+            src={
+              "https://img.freepik.com/premium-vector/hand-painted-watercolor-abstract-background_889452-11415.jpg"
+            }
+          />
+        </HoverForm>
+        <PinDetailStyle.PinBox>
+          <HoverForm
+            radius={"50%"}
+            className="pin"
+            Form={() => <PinSelector className={"pin"} />}
+          >
+            <Pin name="관광지" width={"30px"} />
+          </HoverForm>
+        </PinDetailStyle.PinBox>
 
-        <PinDetailStyle.ButtonList>
-          <PinDetailStyle.Button>내용 수정</PinDetailStyle.Button>
-          <PinDetailStyle.Button>링크 추가</PinDetailStyle.Button>
-        </PinDetailStyle.ButtonList>
+        <PinDetailStyle.Wrapper>
+          <HoverForm
+            className="title"
+            hidden
+            Form={(hiddenForm) => (
+              <InputForm
+                type="input"
+                className="title"
+                onSubmit={submitInputForm("title", hiddenForm)}
+              />
+            )}
+          >
+            <Title as={"h4"} width={"100%"}>
+              123
+            </Title>
+          </HoverForm>
 
-        <PinDetailStyle.Image />
+          <PinDetailStyle.Description>
+            <HoverForm
+              className="description"
+              hidden
+              Form={(hiddenForm) => (
+                <InputForm
+                  type="textarea"
+                  className="description"
+                  onSubmit={submitInputForm("description", hiddenForm)}
+                />
+              )}
+            >
+              123
+            </HoverForm>
+          </PinDetailStyle.Description>
+
+          <Url />
+
+          <ListButton
+            buttons={[
+              { text: "위치 변경", onClick: () => {} },
+              {
+                text: "링크 추가",
+                onClick: handleToggleAddLink,
+              },
+            ]}
+          />
+        </PinDetailStyle.Wrapper>
       </PinDetailStyle.Container>
+
+      {isAddLink && <LinkForm onClose={handleCloseAddLink} />}
     </>
   );
 };

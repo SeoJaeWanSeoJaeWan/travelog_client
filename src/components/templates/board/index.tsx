@@ -2,7 +2,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import BoardStyle from "./board.style";
 import { useState } from "react";
 import Log from "@/components/organisms/log";
-import DayList from "@/components/organisms/dayList";
+// import DayList from "@/components/organisms/dayList";
 import PinDetail from "@/components/organisms/pinDetail";
 import DayDetail from "@/components/organisms/dayDetail";
 
@@ -17,7 +17,7 @@ const Board = () => {
     <BoardStyle.Container $isOpen={isOpen}>
       <Log />
       <BoardStyle.SecondTab>
-        <DayList />
+        {/* <DayList /> */}
         <DayDetail />
         <PinDetail />
       </BoardStyle.SecondTab>

@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
-const Pin = styled.button`
+interface ContainerProps {
+  $width: string;
+}
+
+const Container = styled.span<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 30px;
-  height: 30px;
+  width: ${(props) => props.$width};
+  height: auto;
+  aspect-ratio: 1/1;
 
   border-radius: 50%;
   background-color: ${(props) => props.theme.color.primary};
@@ -14,8 +19,8 @@ const Pin = styled.button`
   color: ${(props) => props.theme.color.white};
 `;
 
-const DayDetailStyle = {
-  Pin,
+const PinStyle = {
+  Container,
 };
 
-export default DayDetailStyle;
+export default PinStyle;

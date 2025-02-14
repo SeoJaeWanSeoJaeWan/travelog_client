@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-const InputStyle = styled.input`
+const CommonInput = styled.input`
   padding: 5px 10px;
   border-radius: 5px;
 
-  border: 1px solid ${(props) => props.theme.color.black};
+  border: 1px solid ${(props) => props.theme.color.darkGray};
 `;
 
-export default InputStyle;
+export default CommonInput;

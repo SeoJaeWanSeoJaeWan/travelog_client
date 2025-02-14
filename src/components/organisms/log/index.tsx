@@ -40,7 +40,7 @@ const Log = () => {
       <LogStyle.List>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -50,7 +50,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -60,7 +60,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -70,7 +70,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -80,7 +80,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -90,7 +90,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -100,7 +100,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -110,7 +110,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -120,7 +120,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -130,7 +130,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -140,7 +140,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -150,7 +150,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -160,7 +160,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -170,7 +170,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -180,7 +180,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -190,7 +190,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -200,7 +200,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -210,7 +210,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -220,7 +220,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -230,7 +230,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -240,7 +240,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -250,7 +250,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -260,7 +260,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -270,7 +270,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -280,7 +280,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -290,7 +290,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -300,7 +300,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -310,7 +310,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -320,7 +320,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -330,7 +330,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -340,7 +340,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
@@ -350,7 +350,7 @@ const Log = () => {
         </li>
         <li>
           <LogStyle.Item>
-            <Title as="p" className={"text-ellipsis"}>
+            <Title width={"100%"} as="p" className={"text-ellipsis"}>
               제목
             </Title>
             <LogStyle.TotalPrice>
