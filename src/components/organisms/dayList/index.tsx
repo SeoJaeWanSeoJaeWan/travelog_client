@@ -6,7 +6,7 @@ import { DraggingProvider } from "@/hooks/utils/useDragging";
 import { useState } from "react";
 
 const Day = () => {
-  const [state, setState] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+  const [state] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 
   return (
     <ListLayout title={"여행 제목"} price={100000} onDelete={() => {}}>

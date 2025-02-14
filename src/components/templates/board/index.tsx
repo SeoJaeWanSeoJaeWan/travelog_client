@@ -5,8 +5,6 @@ import Log from "@/components/organisms/log";
 import DayList from "@/components/organisms/dayList";
 import PinDetail from "@/components/organisms/pinDetail";
 import DayDetail from "@/components/organisms/dayDetail";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 
 const Board = () => {
   const [isOpen, setIsOpen] = useState(true);
