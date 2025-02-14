@@ -6,6 +6,7 @@ const SectionStyle = styled.section`
   width: 400px;
 
   margin-left: 10px;
+  margin-top: 10px;
   padding: 15px;
 
   border-radius: 10px;

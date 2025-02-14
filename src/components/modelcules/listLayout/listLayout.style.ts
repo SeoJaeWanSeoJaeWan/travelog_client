@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 const Conatiner = styled(SectionStyle)`
   height: 165px;
-
-  margin-top: 10px;
 `;
 
 const PriceLine = styled.div`
