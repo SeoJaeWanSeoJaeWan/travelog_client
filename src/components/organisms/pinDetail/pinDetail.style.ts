@@ -37,7 +37,7 @@ const PriceLine = styled.div`
   padding: 5px 0;
 `;
 
-const TotalPrice = styled.p`
+const TotalPrice = styled.div`
   width: calc(100% - 25px);
   font-size: ${(props) => props.theme.font(14)};
 

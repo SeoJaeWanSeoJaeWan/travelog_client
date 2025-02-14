@@ -24,7 +24,10 @@ const KakaoMap = (props: PropsWithChildren) => {
 
   return (
     <Map
-      center={initCenter}
+      center={{
+        lat: 33.450701,
+        lng: 126.570667,
+      }}
       isPanto
       ref={map}
       style={{

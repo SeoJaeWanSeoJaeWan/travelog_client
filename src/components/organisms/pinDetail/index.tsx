@@ -12,6 +12,8 @@ import InputForm from "@/components/modelcules/inputForm";
 import usePinFormUpdate from "@/hooks/utils/usePinFormUpdate";
 import Url from "@/components/modelcules/url";
 import { MdDelete } from "react-icons/md";
+import Marker from "@/components/modelcules/marker/indext";
+import Line from "@/components/atoms/line";
 
 const PinDetail = () => {
   const [isAddLink, setisAddLink] = useState(false);
@@ -44,6 +46,31 @@ const PinDetail = () => {
   return (
     <>
       <PinDetailStyle.Container>
+        <Marker
+          lat={33.450701}
+          lng={126.570667}
+          name={"쇼핑"}
+          onClick={() => {
+            console.log("click");
+          }}
+        />
+        <Marker
+          lat={33.451701}
+          lng={126.570667}
+          name={"식사"}
+          onClick={() => {
+            console.log("click");
+          }}
+        />
+
+        <Line
+          path={[
+            [
+              { lat: 33.450701, lng: 126.570667 },
+              { lat: 33.451701, lng: 126.570667 },
+            ],
+          ]}
+        />
         <Close />
 
         <HoverForm

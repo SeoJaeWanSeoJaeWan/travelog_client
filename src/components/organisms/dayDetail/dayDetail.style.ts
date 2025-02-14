@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const AddPin = styled.button`
+const AddPin = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@ const AddPin = styled.button`
   border-radius: 50%;
 
   color: ${(props) => props.theme.color.white};
-  background-color: ${(props) => props.theme.color.primary};
+  background-color: ${(props) => props.theme.color.gray};
 `;
 
 const DayDetailStyle = {
