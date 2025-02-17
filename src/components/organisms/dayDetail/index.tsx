@@ -2,7 +2,6 @@ import ListLayout from "@/components/modelcules/listLayout";
 import Pin from "@/components/atoms/pin";
 import DayDetailStyle from "./dayDetail.style";
 import { FaPlus } from "react-icons/fa6";
-import { DraggingProvider } from "@/hooks/utils/useDragging";
 import Drag from "@/components/atoms/drag";
 import { useState } from "react";
 

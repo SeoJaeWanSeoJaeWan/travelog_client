@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import DragStyle from "./drag.style";
 import { useDrag, useDrop } from "react-dnd";
 import { getEmptyImage } from "react-dnd-html5-backend";
@@ -8,17 +8,20 @@ interface Value {
   dayIndex: number;
 }
 
-interface DragProps extends PropsWithChildren {
+interface DragProps {
   value: Value;
+  enableDnd?: boolean;
   onChange: (value: number) => void;
   onSubmit: (value: Value) => void;
+  children: (dayIndex: number) => ReactNode;
 }
 
 const Drag = (props: DragProps) => {
-  const { children, value, onChange, onSubmit } = props;
+  const { children, enableDnd, value, onChange, onSubmit } = props;
   const [isDragging, drag, preview] = useDrag(
     () => ({
       type: "drag",
+      canDrag: enableDnd,
       item: () => {
         document.body.classList.add("dragging");
         return { value };
@@ -34,20 +37,7 @@ const Drag = (props: DragProps) => {
     [value, onSubmit]
   );
 
-  const [, dropLeft] = useDrop(
-    () => ({
-      accept: "drag",
-      canDrop: () => false,
-      hover: (originValue: { value: Value }) => {
-        if (originValue.value.dayIndex !== value.dayIndex) {
-          onChange(value.dayIndex);
-        }
-      },
-    }),
-    [value, onChange]
-  );
-
-  const [, dropRight] = useDrop(
+  const [, drop] = useDrop(
     () => ({
       accept: "drag",
       canDrop: () => false,
@@ -66,25 +56,25 @@ const Drag = (props: DragProps) => {
 
   return (
     <DragStyle.Container $opacity={isDragging ? 0 : 1}>
-      <DragStyle.DragArea
+      {/* <DragStyle.DragArea
         $isDragging={isDragging}
         ref={(ref) => {
           dropLeft(ref);
         }}
-      />
+      /> */}
       <div
         ref={(ref) => {
-          drag(ref);
+          drag(drop(ref));
         }}
       >
-        {children}
+        {children(value.dayIndex)}
       </div>
-      <DragStyle.DragArea
+      {/* <DragStyle.DragArea
         $isDragging={isDragging}
         ref={(ref) => {
           dropRight(ref);
         }}
-      />
+      /> */}
     </DragStyle.Container>
   );
 };

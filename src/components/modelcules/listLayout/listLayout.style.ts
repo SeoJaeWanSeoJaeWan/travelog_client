@@ -32,7 +32,7 @@ const DeleteButton = styled.button`
   color: ${(props) => props.theme.color.red};
 `;
 
-const List = styled.ul`
+const List = styled.div`
   position: relative;
 
   display: flex;

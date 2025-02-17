@@ -1,5 +1,6 @@
 import { useDragLayer, XYCoord } from "react-dnd";
-import { CSSProperties, PropsWithChildren } from "react";
+import { CSSProperties, PropsWithChildren, ReactNode } from "react";
+import Drag from "../drag";
 
 const getStyle = (currentOffset: XYCoord): CSSProperties => {
   const { x, y } = currentOffset;
@@ -17,18 +18,27 @@ const getStyle = (currentOffset: XYCoord): CSSProperties => {
   };
 };
 
-const DragPreview = (props: PropsWithChildren) => {
+interface DragPreviewProps {
+  children: (dayIndex: number) => ReactNode;
+}
+
+const DragPreview = (props: DragPreviewProps) => {
   const { children } = props;
-  const { isDragging, currentOffset } = useDragLayer((monitor) => ({
+  const { isDragging, currentOffset, item } = useDragLayer((monitor) => ({
     item: monitor.getItem(),
     itemType: monitor.getItemType(),
     currentOffset: monitor.getSourceClientOffset(),
     isDragging: monitor.isDragging(),
   }));
 
+  if (!isDragging || !currentOffset || !item) {
+    return null;
+  }
+
   return (
-    isDragging &&
-    currentOffset && <div style={getStyle(currentOffset)}>{children}</div>
+    <div style={getStyle(currentOffset)}>
+      <Drag {...item}>{children}</Drag>
+    </div>
   );
 };
 

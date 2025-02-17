@@ -4,7 +4,7 @@ interface ContainerProps {
   $opacity: number;
 }
 
-const Container = styled.li<ContainerProps>`
+const Container = styled.div<ContainerProps>`
   position: relative;
 
   user-select: none;

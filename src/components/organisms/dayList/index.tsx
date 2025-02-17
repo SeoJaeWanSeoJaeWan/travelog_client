@@ -2,7 +2,6 @@ import DayListStyle from "./dayList.style";
 import { FaPlus } from "react-icons/fa6";
 import ListLayout from "@/components/modelcules/listLayout";
 import Drag from "@/components/atoms/drag";
-import { DraggingProvider } from "@/hooks/utils/useDragging";
 import { useGetLog, useRemoveLog } from "@/hooks/apis/log/query/useLog";
 import useDeleteLog from "@/hooks/apis/log/mutation/useDeleteLog";
 import useLogKeys from "@/hooks/utils/useLogKeys";
@@ -23,24 +22,20 @@ const DayList = () => {
 
   const changeDayIndex = useRef(-1);
 
-  const deleteSuccess = (key: string) => {
-    removeLogKey(key);
-  };
-
   if (!data) return null;
 
   const handleDeleteLog = () => {
     deleteLog(data.id, ({ key }) => {
-      deleteSuccess(key);
+      removeLogKey(key);
     });
-  };
-
-  const handleChangeDay = (index: number) => {
-    changeDayIndex.current = index;
   };
 
   const handleCreateDay = () => {
     createDay({ logId: data.id, index: data.days.length + 1 });
+  };
+
+  const handleChangeDay = (index: number) => {
+    changeDayIndex.current = index;
   };
 
   const handleUpdateDay = ({
@@ -51,7 +46,8 @@ const DayList = () => {
     dayIndex: number;
   }) => {
     const updateDayIndex = changeDayIndex.current;
-    if (updateDayIndex !== dayIndex) {
+
+    if (updateDayIndex !== dayIndex && updateDayIndex !== -1) {
       updateDay(id, { index: updateDayIndex });
     }
   };
@@ -68,25 +64,24 @@ const DayList = () => {
           <Drag
             key={id}
             value={{ id, dayIndex }}
+            enableDnd
             onChange={handleChangeDay}
             onSubmit={handleUpdateDay}
           >
-            <DayListStyle.Day>{dayIndex}</DayListStyle.Day>
+            {(dayIndex) => <DayListStyle.Day>{dayIndex}</DayListStyle.Day>}
           </Drag>
         ))}
 
-        <li>
+        <div>
           <DayListStyle.Day $isCreateButton onClick={handleCreateDay}>
             <FaPlus />
           </DayListStyle.Day>
-        </li>
+        </div>
       </ListLayout>
 
-      {data.days.map(({ id, dayIndex }) => (
-        <DragPreview key={id}>
-          <DayListStyle.Day>{dayIndex}</DayListStyle.Day>
-        </DragPreview>
-      ))}
+      <DragPreview>
+        {(dayIndex) => <DayListStyle.Day>{dayIndex}</DayListStyle.Day>}
+      </DragPreview>
     </DndProvider>
   );
 };
