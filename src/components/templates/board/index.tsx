@@ -21,9 +21,9 @@ const Board = () => {
 
   return (
     <BoardStyle.Container $isOpen={isOpen}>
-      <Log handleStep={handleStep} />
+      <Log />
       <BoardStyle.SecondTab>
-        {step === 1 && <DayList handleStep={handleStep} />}
+        <DayList />
         {step === 2 && <DayDetail handleStep={handleStep} />}
         {step === 3 && <PinDetail handleStep={handleStep} />}
       </BoardStyle.SecondTab>

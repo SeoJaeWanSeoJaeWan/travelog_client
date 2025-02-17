@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useRef } from "react";
 import Title from "../../atoms/title";
 import ListLayoutStyle from "./listLayout.style";
 import Line from "@/components/atoms/line/line.style";
@@ -9,46 +9,59 @@ import { MdDelete } from "react-icons/md";
 interface ListLayoutProps extends PropsWithChildren {
   title: string;
   price: number;
-  className?: string;
-  onClose?: () => void;
   onDelete: () => void;
   onAnimationEnd: () => void;
 }
 
 const ListLayout = (props: ListLayoutProps) => {
-  const {
-    title,
-    price,
-    className,
-    children,
-    onClose,
-    onDelete,
-    onAnimationEnd,
-  } = props;
+  const { title, price, children, onDelete, onAnimationEnd } = props;
+  const listRef = useRef<HTMLDivElement>(null);
+
+  const hideLayout = () => {
+    if (listRef.current) {
+      listRef.current.classList.add("hide");
+    }
+  };
+
+  const handleAnimationEnd = (callback: () => void) => () => {
+    if (listRef.current) {
+      if (listRef.current.classList.contains("hide")) {
+        listRef.current.classList.remove("hide");
+        callback();
+      }
+    }
+  };
+
+  const handleDelete = () => {
+    hideLayout();
+    onDelete();
+  };
 
   return (
     <ListLayoutStyle.Conatiner
-      className={className}
-      onAnimationEnd={onAnimationEnd}
+      ref={listRef}
+      onAnimationEnd={handleAnimationEnd(onAnimationEnd)}
     >
-      <Title as={"h3"} width={"90%"}>
-        {title}
-      </Title>
-      <Line />
+      <div>
+        <Title as={"h3"} width={"90%"}>
+          {title}
+        </Title>
+        <Line />
 
-      <ListLayoutStyle.PriceLine>
-        <ListLayoutStyle.TotalPrice>
-          여행 경비 : <strong>{numberWithCommas(price)}원</strong>
-        </ListLayoutStyle.TotalPrice>
+        <ListLayoutStyle.PriceLine>
+          <ListLayoutStyle.TotalPrice>
+            여행 경비 : <strong>{numberWithCommas(price)}원</strong>
+          </ListLayoutStyle.TotalPrice>
 
-        <ListLayoutStyle.DeleteButton onClick={onDelete}>
-          <MdDelete size={18} />
-        </ListLayoutStyle.DeleteButton>
-      </ListLayoutStyle.PriceLine>
+          <ListLayoutStyle.DeleteButton onClick={handleDelete}>
+            <MdDelete size={18} />
+          </ListLayoutStyle.DeleteButton>
+        </ListLayoutStyle.PriceLine>
 
-      <ListLayoutStyle.List>{children}</ListLayoutStyle.List>
+        <ListLayoutStyle.List>{children}</ListLayoutStyle.List>
 
-      <Close onClick={onClose} />
+        <Close onClick={hideLayout} />
+      </div>
     </ListLayoutStyle.Conatiner>
   );
 };

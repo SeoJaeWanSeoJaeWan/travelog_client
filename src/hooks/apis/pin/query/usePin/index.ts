@@ -6,11 +6,11 @@ const pin = (pinId: number) => {
   return GET<Pin>(`/pin/${pinId}`);
 };
 
-export const PIN_KEY = ["pin"];
+export const PIN_KEY = "pin";
 
 const usePin = (pinId: number) => {
   const query = useQuery({
-    queryKey: [...PIN_KEY, pinId],
+    queryKey: [PIN_KEY, pinId],
     queryFn: () => pin(pinId),
   });
 
@@ -21,7 +21,7 @@ export const useRefetchPin = () => {
   const queryClient = useQueryClient();
 
   const refetching = () => {
-    queryClient.invalidateQueries({ queryKey: PIN_KEY });
+    queryClient.invalidateQueries({ queryKey: [PIN_KEY] });
   };
 
   return refetching;

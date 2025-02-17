@@ -9,6 +9,8 @@ import useLogsByKey from "@/hooks/apis/log/query/useLogsByKey";
 import useCreateLog from "@/hooks/apis/log/mutation/useCreateLog";
 import { Days } from "@/types/apis/day";
 import useCheckKey from "@/hooks/apis/log/mutation/useCheckKey";
+import { useState } from "react";
+import useLog from "@/hooks/apis/log/query/useLog";
 
 const getTravelDays = (days: Days[]) => {
   if (days.length === 0) return "여행 계획 중";
@@ -17,25 +19,21 @@ const getTravelDays = (days: Days[]) => {
 };
 
 const Log = () => {
+  const [selectLog, setSelectLog] = useState<{ id: number } | null>(null);
   const { createModal } = useModal();
   const { logKeys, updateLogKeys } = useLogKeys();
   const query = useLogsByKey(logKeys);
+
+  useLog(selectLog);
+
   const createMutation = useCreateLog();
   const checkKeyMutation = useCheckKey();
 
-  if (!query.isSuccess) {
-    return;
-  }
-
   const handleAddLog = () => {
-    createModal({
-      text: "여행명",
-      type: "form",
-      confirm: (title) => {
-        createMutation({ title }, ({ key }) => {
-          updateLogKeys(key);
-        });
-      },
+    const title = "새로운 여행";
+
+    createMutation({ title }, ({ key }) => {
+      updateLogKeys(key);
     });
   };
 
@@ -51,6 +49,10 @@ const Log = () => {
     });
   };
 
+  const handleSelectLog = (id: number) => {
+    setSelectLog({ id });
+  };
+
   return (
     <LogStyle.Container>
       <LogStyle.ButtonList>
@@ -63,19 +65,20 @@ const Log = () => {
       </LogStyle.ButtonList>
 
       <LogStyle.List>
-        {query.data.map(({ id, title, days }) => (
-          <li key={id}>
-            <LogStyle.Item>
-              <Title width={"100%"} as="p" className={"text-ellipsis"}>
-                {title}
-              </Title>
-              <LogStyle.TotalPrice>{getTravelDays(days)}</LogStyle.TotalPrice>
-            </LogStyle.Item>
-            <LogStyle.SaveButton>
-              <BiExport size={20} />
-            </LogStyle.SaveButton>
-          </li>
-        ))}
+        {query.data &&
+          query.data.map(({ id, title, days }) => (
+            <li key={id}>
+              <LogStyle.Item onClick={() => handleSelectLog(id)}>
+                <Title width={"100%"} as="p" className={"text-ellipsis"}>
+                  {title}
+                </Title>
+                <LogStyle.TotalPrice>{getTravelDays(days)}</LogStyle.TotalPrice>
+              </LogStyle.Item>
+              <LogStyle.SaveButton>
+                <BiExport size={20} />
+              </LogStyle.SaveButton>
+            </li>
+          ))}
       </LogStyle.List>
     </LogStyle.Container>
   );

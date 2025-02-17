@@ -9,6 +9,7 @@ const KakaoMap = (props: PropsWithChildren) => {
     lat: 37.566535,
     lng: 126.9779692,
   });
+  console.log(initCenter);
 
   useKakaoLoader({
     appkey: "e92f3de1386bcb7d39b4f118b5a48d36",

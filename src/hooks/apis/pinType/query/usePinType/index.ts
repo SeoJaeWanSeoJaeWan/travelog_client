@@ -8,11 +8,11 @@ const pinType = () => {
   return data;
 };
 
-const PIN_TYPE_KEY = ["pinType"];
+const PIN_TYPE_KEY = "pinType";
 
 const usePinType = () => {
   const query = useQuery({
-    queryKey: PIN_TYPE_KEY,
+    queryKey: [PIN_TYPE_KEY],
     queryFn: pinType,
   });
 
@@ -23,7 +23,7 @@ export const useRefetchPinType = () => {
   const queryClient = useQueryClient();
 
   const refetching = () => {
-    queryClient.invalidateQueries({ queryKey: PIN_TYPE_KEY });
+    queryClient.invalidateQueries({ queryKey: [PIN_TYPE_KEY] });
   };
 
   return refetching;

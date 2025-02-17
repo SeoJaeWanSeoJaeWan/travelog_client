@@ -6,11 +6,11 @@ const priceType = () => {
   return GET<PriceType[]>("/priceType");
 };
 
-export const PRICE_TYPE_KEY = ["priceType"];
+export const PRICE_TYPE_KEY = "priceType";
 
 const usePriceType = () => {
   const query = useQuery({
-    queryKey: PRICE_TYPE_KEY,
+    queryKey: [PRICE_TYPE_KEY],
     queryFn: priceType,
   });
 
@@ -21,7 +21,7 @@ export const useRefetchPriceType = () => {
   const queryClient = useQueryClient();
 
   const refetching = () => {
-    queryClient.invalidateQueries({ queryKey: PRICE_TYPE_KEY });
+    queryClient.invalidateQueries({ queryKey: [PRICE_TYPE_KEY] });
   };
 
   return refetching;

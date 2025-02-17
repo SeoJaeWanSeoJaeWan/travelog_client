@@ -12,4 +12,5 @@ export interface Log {
   title: string;
   key: string;
   days: Day[];
+  logPriceSummary: number;
 }

@@ -33,6 +33,8 @@ const Container = styled.div<ContainerProps>`
   width: auto;
   height: 100vh;
 
+  transition: all 0.5s;
+
   ${(props) =>
     props.$isOpen
       ? css`
@@ -44,6 +46,9 @@ const Container = styled.div<ContainerProps>`
 `;
 
 const SecondTab = styled.div`
+  position: relative;
+  z-index: 1;
+
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -54,6 +59,7 @@ const ToggleButton = styled.button`
   top: 10%;
   right: 0;
   transform: translateX(100%);
+  z-index: 2;
 
   display: flex;
   justify-content: center;

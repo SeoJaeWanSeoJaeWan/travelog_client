@@ -24,18 +24,13 @@ const DayDetail = (props: DayProps) => {
     <ListLayout
       title={"Day 3"}
       price={10000000}
-      className={className}
       onDelete={() => {}}
-      onClose={() => {
-        setClassName("hide");
-        setIndex(1);
-      }}
       onAnimationEnd={handleNext}
     >
       <DraggingProvider>
         <li>
           <Drag
-            value={"1"}
+            value={1}
             onChange={(value) => {
               console.log(value);
             }}

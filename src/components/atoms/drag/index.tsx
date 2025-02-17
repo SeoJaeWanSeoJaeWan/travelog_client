@@ -4,8 +4,8 @@ import useDragging from "@/hooks/utils/useDragging";
 import { useDrag, useDrop } from "react-dnd";
 
 interface DragProps extends PropsWithChildren {
-  value: string;
-  onChange: (value: string) => void;
+  value: number;
+  onChange: (value: number) => void;
   onSubmit: () => void;
 }
 
@@ -33,7 +33,7 @@ const Drag = (props: DragProps) => {
     () => ({
       accept: "drag",
       canDrop: () => false,
-      hover: (originValue: { value: string }) => {
+      hover: (originValue: { value: number }) => {
         if (originValue.value !== value) {
           onChange(value);
         }
@@ -46,7 +46,7 @@ const Drag = (props: DragProps) => {
     () => ({
       accept: "drag",
       canDrop: () => false,
-      hover: (originValue: { value: string }) => {
+      hover: (originValue: { value: number }) => {
         if (originValue.value !== value) {
           onChange(value);
         }

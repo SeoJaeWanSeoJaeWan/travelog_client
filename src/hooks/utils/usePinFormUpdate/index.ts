@@ -28,7 +28,7 @@ const usePinFormUpdate = () =>
 
         const data = formData.get("data") as string;
 
-        console.log(data);
+        console.log(data, name);
 
         // updateMutation(pinId, {
         //   [name]: data,

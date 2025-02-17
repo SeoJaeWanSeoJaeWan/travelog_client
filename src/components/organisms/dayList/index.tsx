@@ -3,52 +3,46 @@ import { FaPlus } from "react-icons/fa6";
 import ListLayout from "@/components/modelcules/listLayout";
 import Drag from "@/components/atoms/drag";
 import { DraggingProvider } from "@/hooks/utils/useDragging";
-import { useState } from "react";
+import { useGetLog, useRemoveLog } from "@/hooks/apis/log/query/useLog";
+import useDeleteLog from "@/hooks/apis/log/mutation/useDeleteLog";
+import useLogKeys from "@/hooks/utils/useLogKeys";
 
-interface DayListProps {
-  handleStep: (step: number) => void;
-}
+const DayList = () => {
+  const data = useGetLog();
+  const removeLog = useRemoveLog();
+  const deleteLog = useDeleteLog();
+  const { removeLogKey } = useLogKeys();
 
-const DayList = (props: DayListProps) => {
-  const { handleStep } = props;
-  const [state] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
-  const [className, setClassName] = useState("");
-  const [index, setIndex] = useState(2);
+  const deleteSuccess = (key: string) => {
+    removeLogKey(key);
+  };
 
-  const handleNext = () => {
-    if (className === "hide") handleStep(index);
+  if (!data) return null;
+
+  const handleDeleteLog = () => {
+    deleteLog(data.id, ({ key }) => {
+      deleteSuccess(key);
+    });
   };
 
   return (
     <ListLayout
-      title={"여행 제목"}
-      price={100000}
-      className={className}
-      onDelete={() => {}}
-      onClose={() => {
-        setClassName("hide");
-        setIndex(0);
-      }}
-      onAnimationEnd={handleNext}
+      title={data.title}
+      price={data.logPriceSummary || 0}
+      onDelete={handleDeleteLog}
+      onAnimationEnd={() => removeLog(data.id)}
     >
       <DraggingProvider>
-        {state.map((value) => (
-          <li key={value}>
+        {data.days.map(({ id, dayIndex }) => (
+          <li key={id}>
             <Drag
-              value={value.toString()}
+              value={dayIndex}
               onChange={(value) => {
                 console.log(value);
               }}
               onSubmit={() => {}}
             >
-              <DayListStyle.Day
-                onClick={() => {
-                  setIndex(2);
-                  setClassName("hide");
-                }}
-              >
-                {value}
-              </DayListStyle.Day>
+              <DayListStyle.Day>{dayIndex}</DayListStyle.Day>
             </Drag>
           </li>
         ))}

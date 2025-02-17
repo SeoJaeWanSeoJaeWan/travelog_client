@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const Container = styled.section`
+  position: relative;
+  z-index: 2;
+
   width: 350px;
   height: 100%;
 

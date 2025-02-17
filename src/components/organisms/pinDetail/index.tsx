@@ -86,7 +86,7 @@ const PinDetail = (props: PinDetailProps) => {
         <HoverForm
           radius={"10px 10px 0 0"}
           className="image"
-          Form={(hiddenForm) => <ImageUpload onChange={() => {}} />}
+          Form={(hiddenForm) => <ImageUpload onChange={hiddenForm} />}
         >
           <PinDetailStyle.Image
             src={

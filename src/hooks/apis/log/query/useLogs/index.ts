@@ -6,11 +6,11 @@ const logs = () => {
   return GET<Logs[]>("/logs");
 };
 
-export const LOGS_KEY = ["logs"];
+export const LOGS_KEY = "logs";
 
 const useLogs = () => {
   const query = useQuery({
-    queryKey: LOGS_KEY,
+    queryKey: [LOGS_KEY],
     queryFn: logs,
   });
 
@@ -21,7 +21,7 @@ export const useRefetchLogs = () => {
   const queryClient = useQueryClient();
 
   const refetching = () => {
-    queryClient.invalidateQueries({ queryKey: LOGS_KEY });
+    queryClient.invalidateQueries({ queryKey: [LOGS_KEY] });
   };
 
   return refetching;

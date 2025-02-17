@@ -1,26 +1,34 @@
 import styled, { keyframes } from "styled-components";
 
 const sectionShowAni = keyframes`
-  from {
+  0% {
+    max-width:0;
     opacity: 0;
-    transform: scale(0)
+
+    margin-left: 0
   }
 
-  to {
+  50% {
     opacity: 1;
-    transform: scale(1)
+  }
+
+  100% {
+    opacity: 1;
+    max-width: 400px;
+  
+    margin-left: 10px;
   }
 `;
 
 const sectionHideAni = keyframes`
-  from {
+  0% {
     opacity: 1;
-    transform: translateY(0);
+    max-width: 400px;
   }
 
-  to {
+  100% {
+    max-width: 0;
     opacity: 0;
-    transform: translateY(-100px);
   }
 `;
 
@@ -28,23 +36,28 @@ const SectionStyle = styled.section`
   position: relative;
 
   width: 400px;
+  max-width: 400px;
 
   margin-left: 10px;
   margin-top: 10px;
-  padding: 15px;
 
   border-radius: 10px;
   background-color: ${(props) => props.theme.color.white};
 
   box-shadow: 0 0 10px ${(props) => props.theme.color.shadow};
+  overflow: hidden;
 
-  opacity: 0;
-  transform: scale(0);
-
-  animation: ${sectionShowAni} 0.4s cubic-bezier(0.25, 0.1, 0.3, 1.3) forwards;
+  animation: ${sectionShowAni} 0.5s forwards;
+  transition: margin 0.3s;
 
   &.hide {
-    animation: ${sectionHideAni} 0.4s cubic-bezier(0.25, 0.1, 0.3, 1.3) forwards;
+    animation: ${sectionHideAni} 0.5s forwards;
+    margin-left: 0;
+  }
+
+  > div {
+    width: 400px;
+    padding: 15px;
   }
 `;
 
