@@ -1,6 +1,6 @@
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from "react-dnd-touch-backend";
 
 interface DraggingContextValue {
   isDragging: boolean;
@@ -23,7 +23,7 @@ export const DraggingProvider = (props: PropsWithChildren) => {
   };
 
   return (
-    <DndProvider backend={HTML5Backend}>
+    <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
       <DraggingContext.Provider
         value={{
           isDragging,

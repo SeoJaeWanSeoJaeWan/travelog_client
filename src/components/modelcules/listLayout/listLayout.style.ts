@@ -33,6 +33,8 @@ const DeleteButton = styled.button`
 `;
 
 const List = styled.ul`
+  position: relative;
+
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;

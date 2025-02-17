@@ -32,7 +32,6 @@ export const LogKeysProvider = (props: PropsWithChildren) => {
     setLogKeys((prev) => {
       const newKeys = prev.filter((k) => k !== key);
       updateStorage(newKeys);
-      console.log(newKeys);
 
       return newKeys;
     });

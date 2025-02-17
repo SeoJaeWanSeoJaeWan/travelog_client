@@ -1,41 +1,46 @@
 import { PropsWithChildren, useEffect } from "react";
 import DragStyle from "./drag.style";
-import useDragging from "@/hooks/utils/useDragging";
 import { useDrag, useDrop } from "react-dnd";
+import { getEmptyImage } from "react-dnd-html5-backend";
+
+interface Value {
+  id: number;
+  dayIndex: number;
+}
 
 interface DragProps extends PropsWithChildren {
-  value: number;
+  value: Value;
   onChange: (value: number) => void;
-  onSubmit: () => void;
+  onSubmit: (value: Value) => void;
 }
 
 const Drag = (props: DragProps) => {
   const { children, value, onChange, onSubmit } = props;
-
-  const { isDragging, dragging, notDragging } = useDragging();
-  const [{ isDragging: isDrag }, drag, preview] = useDrag(
+  const [isDragging, drag, preview] = useDrag(
     () => ({
       type: "drag",
-      item: { value },
-      collect: (monitor) => ({
-        isDragging: monitor.isDragging(),
-      }),
-      end: (_, monitor) => {
+      item: () => {
+        document.body.classList.add("dragging");
+        return { value };
+      },
+      collect: (monitor) => monitor.isDragging(),
+      end: ({ value }, monitor) => {
         if (!monitor.didDrop()) {
-          onSubmit();
+          onSubmit(value);
+          document.body.classList.remove("dragging");
         }
       },
     }),
-    [value, onChange]
+    [value, onSubmit]
   );
 
   const [, dropLeft] = useDrop(
     () => ({
       accept: "drag",
       canDrop: () => false,
-      hover: (originValue: { value: number }) => {
-        if (originValue.value !== value) {
-          onChange(value);
+      hover: (originValue: { value: Value }) => {
+        if (originValue.value.dayIndex !== value.dayIndex) {
+          onChange(value.dayIndex);
         }
       },
     }),
@@ -46,9 +51,9 @@ const Drag = (props: DragProps) => {
     () => ({
       accept: "drag",
       canDrop: () => false,
-      hover: (originValue: { value: number }) => {
-        if (originValue.value !== value) {
-          onChange(value);
+      hover: (originValue: { value: Value }) => {
+        if (originValue.value.dayIndex !== value.dayIndex) {
+          onChange(value.dayIndex);
         }
       },
     }),
@@ -56,19 +61,11 @@ const Drag = (props: DragProps) => {
   );
 
   useEffect(() => {
-    if (isDrag) {
-      dragging();
-    } else {
-      notDragging();
-    }
-  }, [isDrag]);
+    preview(getEmptyImage(), { captureDraggingState: true });
+  }, [preview]);
 
   return (
-    <DragStyle.Container
-      ref={(ref) => {
-        preview(ref);
-      }}
-    >
+    <DragStyle.Container $opacity={isDragging ? 0 : 1}>
       <DragStyle.DragArea
         $isDragging={isDragging}
         ref={(ref) => {

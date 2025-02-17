@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+interface ContainerProps {
+  $opacity: number;
+}
+
+const Container = styled.li<ContainerProps>`
   position: relative;
 
   user-select: none;
@@ -9,6 +13,7 @@ const Container = styled.div`
   overflow: hidden;
 
   transform: translate(0, 0);
+  opacity: ${(props) => props.$opacity};
 `;
 
 interface DragProps {
@@ -32,9 +37,27 @@ const DragArea = styled.div<DragProps>`
   }
 `;
 
+interface PreviewProps {
+  $top: number;
+  $left: number;
+}
+
+const Preview = styled.li<PreviewProps>`
+  position: fixed;
+  top: ${(props) => props.$top}px;
+  left: ${(props) => props.$left}px;
+
+  width: 30px;
+  height: 30px;
+
+  z-index: 20;
+  pointer-events: none;
+`;
+
 const DragStyle = {
   Container,
   DragArea,
+  Preview,
 };
 
 export default DragStyle;
