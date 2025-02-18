@@ -1,6 +1,6 @@
 import { IoMdDownload } from "react-icons/io";
 import LogStyle from "./log.style";
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus, FaPrint } from "react-icons/fa6";
 import Title from "@/components/atoms/title";
 import { BiExport } from "react-icons/bi";
 import useLogKeys from "@/hooks/utils/useLogKeys";
@@ -12,6 +12,7 @@ import useLog from "@/hooks/apis/log/query/useLog";
 import { useRemoveDay } from "@/hooks/apis/day/query/useDay";
 import { useRemovePin } from "@/hooks/apis/pin/query/usePin";
 import LoadLogForm from "@/components/modelcules/loadLogForm";
+import Print from "@/components/modelcules/print";
 
 const getTravelDays = (days: Days[]) => {
   if (days.length === 0) return "여행 계획 중";
@@ -22,8 +23,9 @@ const getTravelDays = (days: Days[]) => {
 const Log = () => {
   const [selectedLog, setSelectedLog] = useState<number | null>(null);
   const { logKeys, updateLogKeys } = useLogKeys();
-  const query = useLogsByKey(logKeys);
   const [isShowLoad, setIsShowLoad] = useState(false);
+  const [printLog, setPrintLog] = useState<number | null>(null);
+  const query = useLogsByKey(logKeys);
 
   const refetchLog = useLog(selectedLog);
   const removeDay = useRemoveDay();
@@ -77,12 +79,17 @@ const Log = () => {
                 </Title>
                 <LogStyle.TotalPrice>{getTravelDays(days)}</LogStyle.TotalPrice>
               </LogStyle.Item>
+              <LogStyle.PrintButton onClick={() => setPrintLog(id)}>
+                <FaPrint size={20} />
+              </LogStyle.PrintButton>
               <LogStyle.SaveButton>
                 <BiExport size={20} />
               </LogStyle.SaveButton>
             </li>
           ))}
       </LogStyle.List>
+
+      {printLog && <Print printLog={printLog} />}
     </LogStyle.Container>
   );
 };

@@ -5,7 +5,7 @@ const Global = styled.createGlobalStyle`
     width: 100vw;
     height: 100vh;
 
-    overflow: hidden;
+    /* overflow: hidden; */
     @media (min-width: ${(props) => props.theme.media.desktop}) {
       display: flex;
       justify-content: center;

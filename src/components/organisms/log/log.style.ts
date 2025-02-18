@@ -70,6 +70,16 @@ const SaveButton = styled.button`
   height: 24px;
 `;
 
+const PrintButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+
+  width: 24px;
+  height: 24px;
+`;
+
 const TotalPrice = styled.p`
   margin-top: 5px;
 
@@ -85,6 +95,7 @@ const LogStyle = {
   List,
   Item,
   SaveButton,
+  PrintButton,
   TotalPrice,
 };
 

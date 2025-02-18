@@ -1,4 +1,4 @@
-import Day, { Days } from "./day";
+import Day, { Days, PrintDay } from "./day";
 
 export interface Logs {
   id: number;
@@ -12,5 +12,11 @@ export interface Log {
   title: string;
   key: string;
   days: Day[];
+  logPriceSummary: number;
+}
+
+export interface PrintLog {
+  title: string;
+  days: PrintDay[];
   logPriceSummary: number;
 }
