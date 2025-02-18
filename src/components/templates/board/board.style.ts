@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
+import { BoardType } from ".";
 
-const boardOpen = keyframes`
+const boardShow = keyframes`
     from {
         transform: translateX(calc(-100% ));
     }
@@ -9,17 +10,24 @@ const boardOpen = keyframes`
     }
 `;
 
-const boardClose = keyframes`
+const boardHide = keyframes`
     from {
         transform: translateX(0);
     }
     to {
-        transform: translateX(calc(-100% ));
+        transform: translateX(calc(-120% ));
+        opacity: 0;
     }
 `;
+
+const boardAni = {
+  show: boardShow,
+  hide: boardHide,
+  out: boardHide,
+};
 
 interface ContainerProps {
-  $isOpen: boolean;
+  $type: BoardType;
 }
 
 const Container = styled.div<ContainerProps>`
@@ -35,14 +43,7 @@ const Container = styled.div<ContainerProps>`
 
   transition: all 0.5s;
 
-  ${(props) =>
-    props.$isOpen
-      ? css`
-          animation: ${boardOpen} 0.5s forwards;
-        `
-      : css`
-          animation: ${boardClose} 0.5s forwards;
-        `}
+  animation: ${(props) => boardAni[props.$type]} 0.5s forwards;
 `;
 
 const SecondTab = styled.div`

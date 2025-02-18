@@ -1,7 +1,16 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const searchAni = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 1;
   top: 20px;
   left: 50%;
@@ -9,6 +18,8 @@ const Container = styled.div`
 
   width: 360px;
   height: 36px;
+
+  animation: ${searchAni} 0.5s forwards;
 `;
 
 const Form = styled.form`

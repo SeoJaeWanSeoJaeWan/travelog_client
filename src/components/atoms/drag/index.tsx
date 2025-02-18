@@ -3,13 +3,15 @@ import DragStyle from "./drag.style";
 import { useDrag, useDrop } from "react-dnd";
 import { getEmptyImage } from "react-dnd-html5-backend";
 
-interface Value {
+export interface Value {
+  type: string;
   id: number;
   index: number;
   name?: string;
 }
 
 interface DragProps {
+  type: string;
   value: Value;
   enableDnd?: boolean;
   onChange: (value: number) => void;
@@ -18,10 +20,10 @@ interface DragProps {
 }
 
 const Drag = (props: DragProps) => {
-  const { children, enableDnd, value, onChange, onSubmit } = props;
+  const { children, enableDnd, value, type, onChange, onSubmit } = props;
   const [isDragging, drag, preview] = useDrag(
     () => ({
-      type: "drag",
+      type,
       canDrag: enableDnd,
       item: () => {
         document.body.classList.add("dragging");
@@ -40,7 +42,7 @@ const Drag = (props: DragProps) => {
 
   const [, drop] = useDrop(
     () => ({
-      accept: "drag",
+      accept: type,
       canDrop: () => false,
       hover: (originValue: { value: Value }) => {
         if (originValue.value.index !== value.index) {
@@ -59,7 +61,8 @@ const Drag = (props: DragProps) => {
     <DragStyle.Container $opacity={isDragging ? 0 : 1}>
       <div
         ref={(ref) => {
-          drag(drop(ref));
+          drag(ref);
+          drop(ref);
         }}
       >
         {children(value)}

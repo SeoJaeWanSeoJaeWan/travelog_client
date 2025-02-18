@@ -20,10 +20,11 @@ const getStyle = (currentOffset: XYCoord): CSSProperties => {
 
 interface DragPreviewProps {
   children: (value: Value) => ReactNode;
+  type: string;
 }
 
 const DragPreview = (props: DragPreviewProps) => {
-  const { children } = props;
+  const { type, children } = props;
   const { isDragging, currentOffset, item } = useDragLayer((monitor) => ({
     item: monitor.getItem(),
     itemType: monitor.getItemType(),
@@ -31,13 +32,17 @@ const DragPreview = (props: DragPreviewProps) => {
     isDragging: monitor.isDragging(),
   }));
 
-  if (!isDragging || !currentOffset || !item) {
+  const isType = item?.value.type === type;
+
+  if (!isDragging || !currentOffset || !item || !isType) {
     return null;
   }
 
   return (
     <div style={getStyle(currentOffset)}>
-      <Drag {...item}>{children}</Drag>
+      <Drag {...item} type={type}>
+        {children}
+      </Drag>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import KakaoMap from "@/components/atoms/map/kakaoMap";
+import KakaoMap from "@/components/atoms/kakaoMap";
 import HomeTemplateStyle from "./homeTemplate.style";
 import Board from "@/components/templates/board";
 import { MapProvider } from "@/hooks/utils/useMap";

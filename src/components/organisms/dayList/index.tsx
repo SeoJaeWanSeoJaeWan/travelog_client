@@ -7,11 +7,12 @@ import useDeleteLog from "@/hooks/apis/log/mutation/useDeleteLog";
 import useLogKeys from "@/hooks/utils/useLogKeys";
 import useCreateDay from "@/hooks/apis/day/mutation/useCreateDay";
 import useUpdateDay from "@/hooks/apis/day/mutation/useUpdateDay";
-import { useRef, useState } from "react";
-import { DndProvider } from "react-dnd";
-import { TouchBackend } from "react-dnd-touch-backend";
+import { useState } from "react";
 import DragPreview from "@/components/atoms/dragPreview";
 import useDay from "@/hooks/apis/day/query/useDay";
+import { DndProvider } from "react-dnd";
+import { TouchBackend } from "react-dnd-touch-backend";
+import useDnd from "@/hooks/utils/useDnd";
 
 const DayList = () => {
   const data = useGetLog();
@@ -24,7 +25,7 @@ const DayList = () => {
   const [selectDay, setSelectDay] = useState<number | null>(null);
   const queryRefetch = useDay(selectDay);
 
-  const changeIndex = useRef(-1);
+  const { onUpdate, onChange } = useDnd();
 
   if (!data) return null;
 
@@ -44,16 +45,8 @@ const DayList = () => {
     createDay({ logId: data.id, index: data.days.length + 1 });
   };
 
-  const handleChangeDay = (index: number) => {
-    changeIndex.current = index;
-  };
-
-  const handleUpdateDay = ({ id, index }: { id: number; index: number }) => {
-    const updateIndex = changeIndex.current;
-
-    if (updateIndex !== index && updateIndex !== -1) {
-      updateDay(id, { index: updateIndex });
-    }
+  const handleUpdateDay = (id: number, index: number) => {
+    updateDay(id, { index });
   };
 
   return (
@@ -66,11 +59,12 @@ const DayList = () => {
       >
         {data.days.map(({ id, index }) => (
           <Drag
+            type={"day"}
             key={id}
-            value={{ id, index }}
+            value={{ id, index, type: "day" }}
             enableDnd
-            onChange={handleChangeDay}
-            onSubmit={handleUpdateDay}
+            onChange={onChange}
+            onSubmit={onUpdate(handleUpdateDay)}
           >
             {(value) => (
               <DayListStyle.Day onClick={() => handleSelectDay(value.id)}>
@@ -87,8 +81,8 @@ const DayList = () => {
         </div>
       </ListLayout>
 
-      <DragPreview>
-        {(value) => <DayListStyle.Day>{value.Index}</DayListStyle.Day>}
+      <DragPreview type={"day"}>
+        {(value) => <DayListStyle.Day>{value.index}</DayListStyle.Day>}
       </DragPreview>
     </DndProvider>
   );

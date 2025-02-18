@@ -1,6 +1,7 @@
 import { PATCH } from "@/apis";
 import { useMutation } from "@tanstack/react-query";
 import { useRefetchLog } from "../../../log/query/useLog";
+import { useRefetchDay } from "../../query/useDay";
 
 interface UpdateDay {
   index: number;
@@ -15,9 +16,11 @@ const useUpdateDay = () => {
     mutationFn: updateDay,
   });
   const refetchLog = useRefetchLog();
+  const refetchDay = useRefetchDay();
 
   const submitSuccess = () => {
     refetchLog();
+    refetchDay();
   };
 
   const handleSubmit = (dayId: number, body: UpdateDay) => {

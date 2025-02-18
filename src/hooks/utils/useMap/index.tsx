@@ -15,6 +15,8 @@ interface MapContextValue {
     callback: (result: SearchKeywordResult[]) => void
   ) => void;
   updateCenter: (lat: number, lng: number) => void;
+  addRightClick: (callback: (lat: number, lng: number) => void) => void;
+  removeRightClick: () => void;
 }
 
 const MapContext = createContext<MapContextValue | null>(null);
@@ -26,6 +28,7 @@ const getKakaoMap = () => {
 export const MapProvider = (props: PropsWithChildren) => {
   const { children } = props;
   const mapRef = useRef<kakao.maps.Map | null>(null);
+  const eventRef = useRef<Function | null>(null);
 
   const searchKeyword = (
     keyword: string,
@@ -60,6 +63,34 @@ export const MapProvider = (props: PropsWithChildren) => {
     }
   };
 
+  const rightClick =
+    (callback: (lat: number, lng: number) => void) =>
+    (e: kakao.maps.event.MouseEvent) => {
+      const lat = e.latLng.getLat();
+      const lng = e.latLng.getLng();
+
+      updateCenter(lat, lng);
+      callback(lat, lng);
+    };
+
+  const addRightClick = (callback: (lat: number, lng: number) => void) => {
+    if (mapRef.current) {
+      const click = rightClick(callback);
+
+      kakao.maps.event.addListener(mapRef.current, "rightclick", click);
+      eventRef.current = click;
+    }
+  };
+
+  const removeRightClick = () => {
+    if (mapRef.current) {
+      const click = eventRef.current;
+
+      if (click)
+        kakao.maps.event.removeListener(mapRef.current, "rightclick", click);
+    }
+  };
+
   return (
     <MapContext.Provider
       value={{
@@ -67,6 +98,8 @@ export const MapProvider = (props: PropsWithChildren) => {
         //
         searchKeyword,
         updateCenter,
+        addRightClick,
+        removeRightClick,
       }}
     >
       {children}

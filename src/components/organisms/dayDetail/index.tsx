@@ -8,14 +8,36 @@ import Drag from "@/components/atoms/drag";
 import Pin from "@/components/atoms/pin";
 import { PinName } from "@/types/apis/pinType";
 import DragPreview from "@/components/atoms/dragPreview";
+import useMap from "@/hooks/utils/useMap";
+import { useState } from "react";
+import { CustomOverlayMap } from "react-kakao-maps-sdk";
+import PinSelector from "@/components/modelcules/pinSelector";
 import { DndProvider } from "react-dnd";
 import { TouchBackend } from "react-dnd-touch-backend";
+import useDnd from "@/hooks/utils/useDnd";
+import useUpdatePinIndex from "@/hooks/apis/pin/mutation/useUpdatePinIndex";
 
-const DayDetail = () => {
+interface DayDetailProps {
+  onOutBoard: () => void;
+  onShowBoard: () => void;
+}
+
+const DayDetail = (props: DayDetailProps) => {
+  const { onOutBoard, onShowBoard } = props;
+
   const data = useGetDay();
   const removeDay = useRemoveDay();
   const deleteDay = useDeleteDay();
   const createPin = useCreatePin();
+  const updatePin = useUpdatePinIndex();
+
+  const { addRightClick } = useMap();
+  const { onUpdate, onChange } = useDnd();
+
+  const [pinTypePosition, setPinTypePosition] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
 
   if (!data) return null;
 
@@ -23,8 +45,31 @@ const DayDetail = () => {
     deleteDay(data.id);
   };
 
-  const handleCreatePin = () => {
-    // createPin({ dayId: data.id });
+  const mapClick = (lat: number, lng: number) => {
+    console.log(lat, lng);
+    setPinTypePosition({ lat, lng });
+  };
+
+  const handleSelectPosition = () => {
+    onOutBoard();
+    addRightClick(mapClick);
+  };
+
+  const handleCreatePin = (id: number) => {
+    createPin({
+      dayId: data.id,
+      pinTypeId: id,
+      lat: pinTypePosition!.lat,
+      lng: pinTypePosition!.lng,
+      index: data.pins.length + 1,
+    });
+
+    onShowBoard();
+    setPinTypePosition(null);
+  };
+
+  const handleUpdateDay = (id: number, index: number) => {
+    updatePin(id, { index });
   };
 
   return (
@@ -35,15 +80,14 @@ const DayDetail = () => {
         onDelete={handleDeleteDay}
         onAnimationEnd={() => removeDay(data.id)}
       >
-        {data.pins.map(({ id, index }) => (
+        {data.pins.map(({ id, index, pinType }) => (
           <Drag
+            type={"pin"}
             key={id}
-            value={{ id, index }}
+            value={{ id, index, name: pinType, type: "pin" }}
             enableDnd
-            onChange={(value) => {
-              console.log(value);
-            }}
-            onSubmit={() => {}}
+            onChange={onChange}
+            onSubmit={onUpdate(handleUpdateDay)}
           >
             {(value) => (
               <button onClick={() => {}}>
@@ -53,16 +97,22 @@ const DayDetail = () => {
           </Drag>
         ))}
 
-        <button>
+        <button onClick={handleSelectPosition}>
           <DayDetailStyle.AddPin>
             <FaPlus />
           </DayDetailStyle.AddPin>
         </button>
       </ListLayout>
 
-      <DragPreview>
+      <DragPreview type={"pin"}>
         {(value) => <Pin name={value.name! as PinName} width={"30px"} />}
       </DragPreview>
+
+      {pinTypePosition && (
+        <CustomOverlayMap position={pinTypePosition}>
+          <PinSelector onClick={handleCreatePin} />
+        </CustomOverlayMap>
+      )}
     </DndProvider>
   );
 };

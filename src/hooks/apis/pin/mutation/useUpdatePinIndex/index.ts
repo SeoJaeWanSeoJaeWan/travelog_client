@@ -1,6 +1,7 @@
 import { PATCH } from "@/apis";
 import { useMutation } from "@tanstack/react-query";
 import { useRefetchPin } from "../../query/usePin";
+import { useRefetchDay } from "@/hooks/apis/day/query/useDay";
 
 interface UpdatePinIndex {
   index: number;
@@ -21,10 +22,12 @@ const useUpdatePinIndex = () => {
     mutationFn: updatePinIndex,
   });
 
+  const refetchDay = useRefetchDay();
   const refetchPin = useRefetchPin();
 
   const submitSuccess = () => {
     refetchPin();
+    refetchDay();
   };
 
   const handleSubmit = (pinId: number, body: UpdatePinIndex) => {

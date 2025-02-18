@@ -5,9 +5,14 @@ import Log from "@/components/organisms/log";
 import DayList from "@/components/organisms/dayList";
 import PinDetail from "@/components/organisms/pinDetail";
 import DayDetail from "@/components/organisms/dayDetail";
+import Search from "@/components/atoms/search";
+
+export type BoardType = "show" | "hide" | "out";
 
 const Board = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [type, setType] = useState<BoardType>("show");
+
+  const isOpen = type === "show";
 
   const [step, setStep] = useState(0);
 
@@ -16,21 +21,32 @@ const Board = () => {
   };
 
   const handleToggle = () => {
-    setIsOpen(!isOpen);
+    setType((prev) => (prev === "show" ? "hide" : "show"));
+  };
+
+  const onOutBoard = () => {
+    setType("out");
+  };
+
+  const onShowBoard = () => {
+    setType("show");
   };
 
   return (
-    <BoardStyle.Container $isOpen={isOpen}>
-      <Log />
-      <BoardStyle.SecondTab>
-        <DayList />
-        <DayDetail />
-        {step === 3 && <PinDetail handleStep={handleStep} />}
-      </BoardStyle.SecondTab>
-      <BoardStyle.ToggleButton onClick={handleToggle}>
-        {isOpen ? <FaAngleLeft /> : <FaAngleRight />}
-      </BoardStyle.ToggleButton>
-    </BoardStyle.Container>
+    <>
+      <BoardStyle.Container $type={type}>
+        <Log />
+        <BoardStyle.SecondTab>
+          <DayList />
+          <DayDetail onOutBoard={onOutBoard} onShowBoard={onShowBoard} />
+          {step === 3 && <PinDetail handleStep={handleStep} />}
+        </BoardStyle.SecondTab>
+        <BoardStyle.ToggleButton onClick={handleToggle}>
+          {isOpen ? <FaAngleLeft /> : <FaAngleRight />}
+        </BoardStyle.ToggleButton>
+      </BoardStyle.Container>
+      {type === "out" && <Search />}
+    </>
   );
 };
 

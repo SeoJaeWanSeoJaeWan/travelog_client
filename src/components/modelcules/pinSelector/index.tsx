@@ -1,19 +1,29 @@
 import Pin, { Pins } from "@/components/atoms/pin";
 import PinSelectorStyle from "./pinSelector.style";
 import { PinName } from "@/types/apis/pinType";
+import usePinType from "@/hooks/apis/pinType/query/usePinType";
 
 interface PinSelectorProps {
   className?: string;
+  onClick: (id: number) => void;
 }
 
 const PinSelector = (props: PinSelectorProps) => {
-  const { className } = props;
+  const {
+    className,
+    //
+    onClick,
+  } = props;
+
+  const query = usePinType();
+
+  if (!query.isSuccess) return null;
 
   return (
     <PinSelectorStyle.Container className={className}>
-      {Object.keys(Pins).map((n) => (
-        <button key={n}>
-          <Pin name={n as PinName} width={"30px"} />
+      {query.data.map(({ name, id }) => (
+        <button key={id} onClick={() => onClick(id)}>
+          <Pin name={name} width={"30px"} />
         </button>
       ))}
     </PinSelectorStyle.Container>
