@@ -1,4 +1,5 @@
 import { createContext, PropsWithChildren, useContext, useRef } from "react";
+import useInfo from "../useInfo";
 
 export interface SearchKeywordResult {
   position: {
@@ -29,6 +30,7 @@ export const MapProvider = (props: PropsWithChildren) => {
   const { children } = props;
   const mapRef = useRef<kakao.maps.Map | null>(null);
   const eventRef = useRef<Function | null>(null);
+  const { createInfo } = useInfo();
 
   const searchKeyword = (
     keyword: string,
@@ -79,6 +81,7 @@ export const MapProvider = (props: PropsWithChildren) => {
 
       kakao.maps.event.addListener(mapRef.current, "rightclick", click);
       eventRef.current = click;
+      createInfo("마우스 오른쪽 클릭을 통해 위치를 지정해주세요.");
     }
   };
 

@@ -118,6 +118,7 @@ const PinDetail = (props: DayDetailProps) => {
                   <InputForm
                     type="input"
                     className="title"
+                    maxLength={24}
                     onSubmit={submitInputForm("title", hiddenForm)}
                   />
                 )}

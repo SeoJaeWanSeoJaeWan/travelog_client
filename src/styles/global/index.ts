@@ -73,7 +73,8 @@ const Global = styled.createGlobalStyle`
     word-break: break-all;
   }
 
-  #modal {
+  #modal,
+  #info {
     position: relative;
     z-index: 1000;
   }

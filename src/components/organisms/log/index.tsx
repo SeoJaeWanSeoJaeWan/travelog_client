@@ -2,7 +2,6 @@ import { IoMdDownload } from "react-icons/io";
 import LogStyle from "./log.style";
 import { FaPlus } from "react-icons/fa6";
 import Title from "@/components/atoms/title";
-import useModal from "@/hooks/utils/useModal";
 import { BiExport } from "react-icons/bi";
 import useLogKeys from "@/hooks/utils/useLogKeys";
 import useLogsByKey from "@/hooks/apis/log/query/useLogsByKey";
@@ -22,7 +21,6 @@ const getTravelDays = (days: Days[]) => {
 
 const Log = () => {
   const [selectedLog, setSelectedLog] = useState<number | null>(null);
-  const { createModal } = useModal();
   const { logKeys, updateLogKeys } = useLogKeys();
   const query = useLogsByKey(logKeys);
 
