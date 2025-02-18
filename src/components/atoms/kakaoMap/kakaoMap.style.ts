@@ -14,9 +14,9 @@ const CancelButton = styled.button`
   height: 24px;
 
   background-color: ${(props) => props.theme.color.shadow};
-  border: 2px solid ${(props) => props.theme.color.black};
-
+  /* border: 2px solid ${(props) => props.theme.color.black}; */
   border-radius: 50%;
+  color: ${(props) => props.theme.color.lightGray};
 `;
 
 const KakaoMapStyle = {

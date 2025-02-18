@@ -30,6 +30,8 @@ const Container = styled.p`
   background-color: ${(props) => props.theme.color.darkShadow};
 
   color: ${(props) => props.theme.color.white};
+  font-size: ${(props) => props.theme.font(12)};
+
   opacity: 0;
 
   animation: ${infoAni} 4s 0.5s forwards;

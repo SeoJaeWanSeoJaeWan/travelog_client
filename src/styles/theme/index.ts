@@ -15,6 +15,7 @@ export const media = {
   mobile: "767px",
   tablet: "1120px",
   notebook: "1680px",
+  desktop: "1921px",
 };
 
 export const font = (px: number) => {
