@@ -37,9 +37,13 @@ export const useRefetchLog = () => {
 
 export const useRemoveLog = () => {
   const queryClient = useQueryClient();
+  const data = useGetLog();
 
-  const removeLog = (id: number) => {
-    queryClient.setQueryData([LOG_KEY, id], null);
+  const removeLog = () => {
+    if (data) {
+      const id = data.id;
+      queryClient.setQueryData([LOG_KEY, id], null);
+    }
   };
 
   return removeLog;

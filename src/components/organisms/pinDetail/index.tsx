@@ -61,7 +61,7 @@ const PinDetail = (props: DayDetailProps) => {
     if (pinRef.current) {
       if (pinRef.current.classList.contains("hide")) {
         pinRef.current.classList.remove("hide");
-        removePin(data.id);
+        removePin();
       }
     }
   };

@@ -36,9 +36,13 @@ export const useRefetchDay = () => {
 
 export const useRemoveDay = () => {
   const queryClient = useQueryClient();
+  const data = useGetDay();
 
-  const removeDay = (id: number) => {
-    queryClient.setQueryData([DAY_KEY, id], null);
+  const removeDay = () => {
+    if (data) {
+      const id = data.id;
+      queryClient.setQueryData([DAY_KEY, id], null);
+    }
   };
 
   return removeDay;

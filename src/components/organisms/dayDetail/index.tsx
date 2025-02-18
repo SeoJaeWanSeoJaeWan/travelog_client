@@ -92,7 +92,7 @@ const DayDetail = (props: DayDetailProps) => {
         title={`Day ${data.index}`}
         price={data.dayPriceSummary}
         onDelete={handleDeleteDay}
-        onAnimationEnd={() => removeDay(data.id)}
+        onAnimationEnd={removeDay}
       >
         {data.pins.map(({ id, lat, lng, index, pinType }) => (
           <Drag

@@ -11,6 +11,8 @@ import { Days } from "@/types/apis/day";
 import useCheckKey from "@/hooks/apis/log/mutation/useCheckKey";
 import { useState } from "react";
 import useLog from "@/hooks/apis/log/query/useLog";
+import { useRemoveDay } from "@/hooks/apis/day/query/useDay";
+import { useRemovePin } from "@/hooks/apis/pin/query/usePin";
 
 const getTravelDays = (days: Days[]) => {
   if (days.length === 0) return "여행 계획 중";
@@ -25,6 +27,8 @@ const Log = () => {
   const query = useLogsByKey(logKeys);
 
   const refetchLog = useLog(selectedLog);
+  const removeDay = useRemoveDay();
+  const removePin = useRemovePin();
 
   const createMutation = useCreateLog();
   const checkKeyMutation = useCheckKey();
@@ -51,6 +55,9 @@ const Log = () => {
 
   const handleSelectLog = (id: number) => {
     setSelectedLog(id);
+
+    removeDay();
+    removePin();
 
     if (selectedLog) {
       refetchLog();

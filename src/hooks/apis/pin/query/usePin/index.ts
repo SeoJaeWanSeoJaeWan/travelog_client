@@ -37,9 +37,13 @@ export const useRefetchPin = () => {
 
 export const useRemovePin = () => {
   const queryClient = useQueryClient();
+  const data = useGetPin();
 
-  const removePin = (id: number) => {
-    queryClient.setQueryData([PIN_KEY, id], null);
+  const removePin = () => {
+    if (data) {
+      const id = data.id;
+      queryClient.setQueryData([PIN_KEY, id], null);
+    }
   };
 
   return removePin;

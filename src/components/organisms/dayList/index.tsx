@@ -13,6 +13,7 @@ import useDay from "@/hooks/apis/day/query/useDay";
 import { DndProvider } from "react-dnd";
 import { TouchBackend } from "react-dnd-touch-backend";
 import useDnd from "@/hooks/utils/useDnd";
+import { useRemovePin } from "@/hooks/apis/pin/query/usePin";
 
 const DayList = () => {
   const data = useGetLog();
@@ -20,6 +21,7 @@ const DayList = () => {
   const deleteLog = useDeleteLog();
   const createDay = useCreateDay();
   const updateDay = useUpdateDay();
+  const removePin = useRemovePin();
   const { removeLogKey } = useLogKeys();
 
   const [selectDay, setSelectDay] = useState<number | null>(null);
@@ -31,6 +33,7 @@ const DayList = () => {
 
   const handleSelectDay = (id: number) => {
     setSelectDay(id);
+    removePin();
 
     if (selectDay) queryRefetch();
   };
@@ -55,7 +58,7 @@ const DayList = () => {
         title={data.title}
         price={data.logPriceSummary}
         onDelete={handleDeleteLog}
-        onAnimationEnd={() => removeLog(data.id)}
+        onAnimationEnd={removeLog}
       >
         {data.days.map(({ id, index }) => (
           <Drag
