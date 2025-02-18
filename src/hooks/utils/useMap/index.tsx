@@ -118,6 +118,7 @@ export const MapProvider = (props: PropsWithChildren) => {
 
   const cancelRightClick = () => {
     if (cancelRef.current) {
+      createInfo("");
       cancelRef.current();
       removeRightClick();
     }

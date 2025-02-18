@@ -1,4 +1,4 @@
-import { CustomOverlayMap, Polyline } from "react-kakao-maps-sdk";
+import { CustomOverlayMap } from "react-kakao-maps-sdk";
 import MarkerStyle from "./marker.style";
 import Pin from "../../atoms/pin";
 import { Pins } from "@/types/apis/pin";
