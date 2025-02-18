@@ -1,60 +1,69 @@
 import ListLayout from "@/components/modelcules/listLayout";
-import Pin from "@/components/atoms/pin";
 import DayDetailStyle from "./dayDetail.style";
 import { FaPlus } from "react-icons/fa6";
+import { useGetDay, useRemoveDay } from "@/hooks/apis/day/query/useDay";
+import useDeleteDay from "@/hooks/apis/day/mutation/useDeleteDay";
+import useCreatePin from "@/hooks/apis/pin/mutation/useCreatePin";
 import Drag from "@/components/atoms/drag";
-import { useState } from "react";
+import Pin from "@/components/atoms/pin";
+import { PinName } from "@/types/apis/pinType";
+import DragPreview from "@/components/atoms/dragPreview";
+import { DndProvider } from "react-dnd";
+import { TouchBackend } from "react-dnd-touch-backend";
 
-interface DayProps {
-  handleStep: (step: number) => void;
-}
+const DayDetail = () => {
+  const data = useGetDay();
+  const removeDay = useRemoveDay();
+  const deleteDay = useDeleteDay();
+  const createPin = useCreatePin();
 
-const DayDetail = (props: DayProps) => {
-  const { handleStep } = props;
+  if (!data) return null;
 
-  const [className, setClassName] = useState("");
-  const [index, setIndex] = useState(3);
+  const handleDeleteDay = () => {
+    deleteDay(data.id);
+  };
 
-  const handleNext = () => {
-    if (className === "hide") handleStep(index);
+  const handleCreatePin = () => {
+    // createPin({ dayId: data.id });
   };
 
   return (
-    <ListLayout
-      title={"Day 3"}
-      price={10000000}
-      onDelete={() => {}}
-      onAnimationEnd={handleNext}
-    >
-      <DraggingProvider>
-        <li>
+    <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
+      <ListLayout
+        title={`Day ${data.index}`}
+        price={data.dayPriceSummary}
+        onDelete={handleDeleteDay}
+        onAnimationEnd={() => removeDay(data.id)}
+      >
+        {data.pins.map(({ id, index }) => (
           <Drag
-            value={1}
+            key={id}
+            value={{ id, index }}
+            enableDnd
             onChange={(value) => {
               console.log(value);
             }}
             onSubmit={() => {}}
           >
-            <button
-              onClick={() => {
-                setIndex(3);
-                setClassName("hide");
-              }}
-            >
-              <Pin name="식사" width={"30px"} />
-            </button>
+            {(value) => (
+              <button onClick={() => {}}>
+                <Pin name={value.name! as PinName} width={"30px"} />
+              </button>
+            )}
           </Drag>
-        </li>
-      </DraggingProvider>
+        ))}
 
-      <li>
         <button>
           <DayDetailStyle.AddPin>
             <FaPlus />
           </DayDetailStyle.AddPin>
         </button>
-      </li>
-    </ListLayout>
+      </ListLayout>
+
+      <DragPreview>
+        {(value) => <Pin name={value.name! as PinName} width={"30px"} />}
+      </DragPreview>
+    </DndProvider>
   );
 };
 

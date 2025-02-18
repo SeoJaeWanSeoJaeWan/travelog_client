@@ -1,6 +1,6 @@
 import { useDragLayer, XYCoord } from "react-dnd";
-import { CSSProperties, PropsWithChildren, ReactNode } from "react";
-import Drag from "../drag";
+import { CSSProperties, ReactNode } from "react";
+import Drag, { Value } from "../drag";
 
 const getStyle = (currentOffset: XYCoord): CSSProperties => {
   const { x, y } = currentOffset;
@@ -19,7 +19,7 @@ const getStyle = (currentOffset: XYCoord): CSSProperties => {
 };
 
 interface DragPreviewProps {
-  children: (dayIndex: number) => ReactNode;
+  children: (value: Value) => ReactNode;
 }
 
 const DragPreview = (props: DragPreviewProps) => {

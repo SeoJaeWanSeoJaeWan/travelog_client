@@ -1,19 +1,21 @@
 import { GET } from "@/apis";
-import { Log } from "@/types/apis/log";
+import { Days } from "@/types/apis/day";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 
-const LOG_KEY = "log";
+const DAY_KEY = "day";
+let prevKey = -1;
 
-const log = (logId: number) => {
-  return GET<Log>(`/logs/${logId}`);
+const day = (dayId: number) => {
+  prevKey = dayId;
+  return GET<Days>(`/day/${dayId}`);
 };
 
-const useLog = (id: number | null) => {
+const useDay = (id: number | null) => {
   const query = useQuery({
-    queryKey: [LOG_KEY, id],
+    queryKey: [DAY_KEY, id],
     enabled: !!id,
-    queryFn: () => log(id!),
+    queryFn: () => day(id!),
   });
 
   const queryRefetch = () => {
@@ -25,42 +27,43 @@ const useLog = (id: number | null) => {
   return queryRefetch;
 };
 
-export const useRefetchLog = () => {
+export const useRefetchDay = () => {
   const queryClient = useQueryClient();
 
   const refetching = () => {
-    queryClient.invalidateQueries({ queryKey: [LOG_KEY] });
+    queryClient.invalidateQueries({ queryKey: [DAY_KEY] });
   };
 
   return refetching;
 };
 
-export const useRemoveLog = () => {
+export const useRemoveDay = () => {
   const queryClient = useQueryClient();
 
-  const removeLog = (id: number) => {
-    queryClient.setQueryData([LOG_KEY, id], null);
+  const removeDay = (id: number) => {
+    prevKey = -1;
+    queryClient.setQueryData([DAY_KEY, id], null);
   };
 
-  return removeLog;
+  return removeDay;
 };
 
-export const useGetLog = () => {
+export const useGetDay = () => {
   const queryClient = useQueryClient();
   const prevKey = useRef<String>("");
-  const [data, setData] = useState<Log | null>(null);
+  const [data, setData] = useState<Days | null>(null);
 
   useEffect(() => {
     const unsubscribe = queryClient.getQueryCache().subscribe((event) => {
       const queryKey = event.query.queryKey;
-      if (queryKey[0] !== LOG_KEY) return;
+      if (queryKey[0] !== DAY_KEY) return;
 
       const data = queryClient.getQueryData(queryKey);
 
       if (queryKey[1] && JSON.stringify(queryKey) !== prevKey.current && !data)
         return;
 
-      setData(data as Log);
+      setData(data as Days);
       prevKey.current = JSON.stringify(event.query.queryKey);
     });
 
@@ -72,4 +75,4 @@ export const useGetLog = () => {
   return data;
 };
 
-export default useLog;
+export default useDay;

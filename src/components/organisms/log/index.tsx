@@ -19,12 +19,12 @@ const getTravelDays = (days: Days[]) => {
 };
 
 const Log = () => {
-  const [selectLog, setSelectLog] = useState<{ id: number } | null>(null);
+  const [selectedLog, setSelectedLog] = useState<number | null>(null);
   const { createModal } = useModal();
   const { logKeys, updateLogKeys } = useLogKeys();
   const query = useLogsByKey(logKeys);
 
-  useLog(selectLog);
+  const refetchLog = useLog(selectedLog);
 
   const createMutation = useCreateLog();
   const checkKeyMutation = useCheckKey();
@@ -50,7 +50,11 @@ const Log = () => {
   };
 
   const handleSelectLog = (id: number) => {
-    setSelectLog({ id });
+    setSelectedLog(id);
+
+    if (selectedLog) {
+      refetchLog();
+    }
   };
 
   return (

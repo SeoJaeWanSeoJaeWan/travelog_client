@@ -24,7 +24,7 @@ const Board = () => {
       <Log />
       <BoardStyle.SecondTab>
         <DayList />
-        {step === 2 && <DayDetail handleStep={handleStep} />}
+        <DayDetail />
         {step === 3 && <PinDetail handleStep={handleStep} />}
       </BoardStyle.SecondTab>
       <BoardStyle.ToggleButton onClick={handleToggle}>

@@ -3,6 +3,7 @@ import PinUrl from "./pinUrl";
 
 export interface Pins {
   id: number;
+  index: number;
   lat: number;
   lng: number;
   pinIndex: number;

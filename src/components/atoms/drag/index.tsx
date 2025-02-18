@@ -5,7 +5,8 @@ import { getEmptyImage } from "react-dnd-html5-backend";
 
 interface Value {
   id: number;
-  dayIndex: number;
+  index: number;
+  name?: string;
 }
 
 interface DragProps {
@@ -13,7 +14,7 @@ interface DragProps {
   enableDnd?: boolean;
   onChange: (value: number) => void;
   onSubmit: (value: Value) => void;
-  children: (dayIndex: number) => ReactNode;
+  children: (value: Value) => ReactNode;
 }
 
 const Drag = (props: DragProps) => {
@@ -42,8 +43,8 @@ const Drag = (props: DragProps) => {
       accept: "drag",
       canDrop: () => false,
       hover: (originValue: { value: Value }) => {
-        if (originValue.value.dayIndex !== value.dayIndex) {
-          onChange(value.dayIndex);
+        if (originValue.value.index !== value.index) {
+          onChange(value.index);
         }
       },
     }),
@@ -56,25 +57,13 @@ const Drag = (props: DragProps) => {
 
   return (
     <DragStyle.Container $opacity={isDragging ? 0 : 1}>
-      {/* <DragStyle.DragArea
-        $isDragging={isDragging}
-        ref={(ref) => {
-          dropLeft(ref);
-        }}
-      /> */}
       <div
         ref={(ref) => {
           drag(drop(ref));
         }}
       >
-        {children(value.dayIndex)}
+        {children(value)}
       </div>
-      {/* <DragStyle.DragArea
-        $isDragging={isDragging}
-        ref={(ref) => {
-          dropRight(ref);
-        }}
-      /> */}
     </DragStyle.Container>
   );
 };

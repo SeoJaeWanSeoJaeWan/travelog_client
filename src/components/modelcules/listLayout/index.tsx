@@ -50,7 +50,7 @@ const ListLayout = (props: ListLayoutProps) => {
 
         <ListLayoutStyle.PriceLine>
           <ListLayoutStyle.TotalPrice>
-            여행 경비 : <strong>{numberWithCommas(price)}원</strong>
+            여행 경비 : <strong>{numberWithCommas(price || 0)}원</strong>
           </ListLayoutStyle.TotalPrice>
 
           <ListLayoutStyle.DeleteButton onClick={handleDelete}>
