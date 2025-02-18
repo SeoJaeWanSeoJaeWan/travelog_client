@@ -2,6 +2,7 @@ import ListButtonStyle from "./listButton.style";
 
 interface Button {
   text: string;
+  type?: "button" | "submit" | "reset";
   onClick: () => void;
 }
 
@@ -14,8 +15,12 @@ const ListButton = (props: ListButtonProps) => {
 
   return (
     <ListButtonStyle.Container>
-      {buttons.map(({ text, onClick }, idx) => (
-        <ListButtonStyle.Button key={idx} onClick={onClick}>
+      {buttons.map(({ text, type, onClick }, idx) => (
+        <ListButtonStyle.Button
+          key={idx}
+          type={type || "button"}
+          onClick={onClick}
+        >
           {text}
         </ListButtonStyle.Button>
       ))}

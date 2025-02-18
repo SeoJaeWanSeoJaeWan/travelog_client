@@ -5,11 +5,13 @@ import { FaCheck } from "react-icons/fa6";
 interface InputFormProps {
   type: "input" | "textarea";
   className: string;
+  inputMode?: string;
+  maxLength?: number;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
 
 const InputForm = (props: InputFormProps) => {
-  const { type, className, onSubmit, ...rest } = props;
+  const { type, className, maxLength, inputMode, onSubmit, ...rest } = props;
 
   const Form = (
     type === "input" ? InputFormStyle.Input : InputFormStyle.TextArea
@@ -21,7 +23,7 @@ const InputForm = (props: InputFormProps) => {
       className={className}
       onSubmit={onSubmit}
     >
-      <Form {...rest} name={"data"} />
+      <Form {...rest} type={inputMode} maxLength={maxLength} name={"data"} />
       <InputFormStyle.Button>
         <FaCheck size={20} />
       </InputFormStyle.Button>

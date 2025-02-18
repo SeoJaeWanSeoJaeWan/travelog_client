@@ -1,5 +1,6 @@
 import PinType, { PinName } from "./pinType";
 import PinUrl from "./pinUrl";
+import PriceType from "./priceType";
 
 export interface Pins {
   id: number;
@@ -18,7 +19,7 @@ interface Pin {
   description: string;
   picture: string;
   price: number;
-  priceType: string;
+  priceType: PriceType;
   pinType: PinType;
   index: number;
   pinUrl: PinUrl[];

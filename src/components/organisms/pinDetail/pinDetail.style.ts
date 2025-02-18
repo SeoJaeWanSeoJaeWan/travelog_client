@@ -5,8 +5,10 @@ const Container = styled(SectionStyle)`
   display: flex;
   flex-direction: column;
 
-  padding: 0;
-  padding-bottom: 5px;
+  & > div {
+    padding: 0;
+    padding-bottom: 5px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -21,6 +23,7 @@ const Description = styled.div`
   flex: 1;
 
   width: 100%;
+  min-height: 115px;
 
   padding: 5px 0;
 
@@ -38,10 +41,11 @@ const TitleLine = styled.div`
 `;
 
 const TotalPrice = styled.div`
-  width: 100%;
-  height: 28px;
+  display: flex;
+  align-items: center;
 
-  margin: 2px 0;
+  width: fit-content;
+  height: 28px;
 
   text-align: right;
   font-size: ${(props) => props.theme.font(14)};
@@ -69,6 +73,8 @@ const Image = styled.img`
 
   border-radius: 10px 10px 0 0;
   border: none;
+
+  object-fit: cover;
 `;
 
 const PinBox = styled.div`

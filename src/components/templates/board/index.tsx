@@ -14,12 +14,6 @@ const Board = () => {
 
   const isOpen = type === "show";
 
-  const [step, setStep] = useState(0);
-
-  const handleStep = (step: number) => {
-    setStep(step);
-  };
-
   const handleToggle = () => {
     setType((prev) => (prev === "show" ? "hide" : "show"));
   };
@@ -39,7 +33,7 @@ const Board = () => {
         <BoardStyle.SecondTab>
           <DayList />
           <DayDetail onOutBoard={onOutBoard} onShowBoard={onShowBoard} />
-          {step === 3 && <PinDetail handleStep={handleStep} />}
+          <PinDetail onOutBoard={onOutBoard} onShowBoard={onShowBoard} />
         </BoardStyle.SecondTab>
         <BoardStyle.ToggleButton onClick={handleToggle}>
           {isOpen ? <FaAngleLeft /> : <FaAngleRight />}

@@ -17,6 +17,7 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import useDnd from "@/hooks/utils/useDnd";
 import useUpdatePinIndex from "@/hooks/apis/pin/mutation/useUpdatePinIndex";
 import Marker from "@/components/modelcules/marker";
+import usePin from "@/hooks/apis/pin/query/usePin";
 
 interface DayDetailProps {
   onOutBoard: () => void;
@@ -32,7 +33,11 @@ const DayDetail = (props: DayDetailProps) => {
   const createPin = useCreatePin();
   const updatePin = useUpdatePinIndex();
 
-  const { addRightClick, updateCenter } = useMap();
+  const [selectPin, setSelectPin] = useState<number | null>(null);
+
+  const queryRefetch = usePin(selectPin);
+
+  const { addRightClick, removeRightClick, updateCenter } = useMap();
   const { onUpdate, onChange } = useDnd();
 
   const [pinTypePosition, setPinTypePosition] = useState<{
@@ -47,7 +52,6 @@ const DayDetail = (props: DayDetailProps) => {
   };
 
   const mapClick = (lat: number, lng: number) => {
-    console.log(lat, lng);
     setPinTypePosition({ lat, lng });
   };
 
@@ -66,6 +70,7 @@ const DayDetail = (props: DayDetailProps) => {
     });
 
     onShowBoard();
+    removeRightClick();
     setPinTypePosition(null);
   };
 
@@ -75,6 +80,10 @@ const DayDetail = (props: DayDetailProps) => {
 
   const handleSelectPin = (id: number, lat: number, lng: number) => {
     updateCenter(lat, lng);
+
+    setSelectPin(id);
+
+    if (selectPin) queryRefetch();
   };
 
   return (

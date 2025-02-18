@@ -1,7 +1,7 @@
 import Title from "@/components/atoms/title";
 import PinDetailStyle from "./pinDetail.style";
 import Close from "@/components/atoms/close";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import LinkForm from "@/components/modelcules/linkForm";
 import Pin from "@/components/atoms/pin";
 import ListButton from "@/components/atoms/listBox";
@@ -12,29 +12,31 @@ import InputForm from "@/components/modelcules/inputForm";
 import usePinFormUpdate from "@/hooks/utils/usePinFormUpdate";
 import Url from "@/components/modelcules/url";
 import { MdDelete } from "react-icons/md";
-import Marker from "@/components/modelcules/marker";
-import Line from "@/components/atoms/line";
 import numberWithCommas from "@/utils/numberWithCommas";
+import { useGetPin, useRemovePin } from "@/hooks/apis/pin/query/usePin";
+import useDeletePin from "@/hooks/apis/pin/mutation/useDeletePin";
+import convertImage from "@/utils/convertImage";
+import useMap from "@/hooks/utils/useMap";
 
-interface PinDetailProps {
-  handleStep: (step: number) => void;
+interface DayDetailProps {
+  onOutBoard: () => void;
+  onShowBoard: () => void;
 }
 
-const PinDetail = (props: PinDetailProps) => {
-  const { handleStep } = props;
+const PinDetail = (props: DayDetailProps) => {
+  const { onOutBoard, onShowBoard } = props;
+
   const [isAddLink, setisAddLink] = useState(false);
-  const {
-    submitInputForm,
-    // submitFileForm
-  } = usePinFormUpdate();
-  // 1
+  const data = useGetPin();
+  const pinRef = useRef<HTMLDivElement>(null);
+  const removePin = useRemovePin();
+  const deletePin = useDeletePin();
+  const { addRightClick, removeRightClick } = useMap();
 
-  const [className, setClassName] = useState("");
-  const [index, setIndex] = useState(2);
+  const { submitPinForm, submitPinPosition, submitInputForm, submitFileForm } =
+    usePinFormUpdate(data);
 
-  const handleNext = () => {
-    if (className === "hide") handleStep(index);
-  };
+  if (!data) return null;
 
   const handleToggleAddLink = () => {
     setisAddLink((prev) => !prev);
@@ -44,89 +46,91 @@ const PinDetail = (props: PinDetailProps) => {
     setisAddLink(false);
   };
 
+  const handleClosePin = () => {
+    if (pinRef.current) {
+      pinRef.current.classList.add("hide");
+    }
+  };
+
+  const handleDeletePin = () => {
+    handleClosePin();
+    deletePin(data.id);
+  };
+
+  const handleAnimationEnd = () => {
+    if (pinRef.current) {
+      if (pinRef.current.classList.contains("hide")) {
+        pinRef.current.classList.remove("hide");
+        removePin(data.id);
+      }
+    }
+  };
+
+  const handleUpdatePinPosition = () => {
+    onOutBoard();
+    addRightClick((lat, lng) => {
+      submitPinPosition(lat, lng, () => {
+        removeRightClick();
+        onShowBoard();
+      });
+    });
+  };
+
   return (
     <>
       <PinDetailStyle.Container
-        className={className}
-        onAnimationEnd={handleNext}
+        ref={pinRef}
+        onAnimationEnd={handleAnimationEnd}
       >
-        <Marker
-          lat={33.450701}
-          lng={126.570667}
-          name={"쇼핑"}
-          onClick={() => {
-            console.log("click");
-          }}
-        />
-        <Marker
-          lat={33.451701}
-          lng={126.570667}
-          name={"식사"}
-          onClick={() => {
-            console.log("click");
-          }}
-        />
+        <div>
+          <Close onClick={handleClosePin} />
 
-        <Line
-          path={[
-            [
-              { lat: 33.450701, lng: 126.570667 },
-              { lat: 33.451701, lng: 126.570667 },
-            ],
-          ]}
-        />
-        <Close
-          onClick={() => {
-            setClassName("hide");
-            setIndex(2);
-            setisAddLink(false);
-          }}
-        />
-
-        <HoverForm
-          radius={"10px 10px 0 0"}
-          className="image"
-          Form={(hiddenForm) => <ImageUpload onChange={hiddenForm} />}
-        >
-          <PinDetailStyle.Image
-            src={
-              "https://img.freepik.com/premium-vector/hand-painted-watercolor-abstract-background_889452-11415.jpg"
-            }
-          />
-        </HoverForm>
-        <PinDetailStyle.PinBox>
           <HoverForm
-            radius={"50%"}
-            className="pin"
-            Form={() => <PinSelector className={"pin"} />}
+            radius={"10px 10px 0 0"}
+            className="image"
+            Form={(hiddenForm) => (
+              <ImageUpload onChange={submitFileForm(hiddenForm)} />
+            )}
           >
-            <Pin name="관광지" width={"30px"} />
+            <PinDetailStyle.Image src={convertImage(data.picture)} />
           </HoverForm>
-        </PinDetailStyle.PinBox>
-
-        <PinDetailStyle.Wrapper>
-          <PinDetailStyle.TitleLine>
+          <PinDetailStyle.PinBox>
             <HoverForm
-              className="title"
-              hidden
+              radius={"50%"}
+              className="pin"
               Form={(hiddenForm) => (
-                <InputForm
-                  type="input"
-                  className="title"
-                  onSubmit={submitInputForm("title", hiddenForm)}
+                <PinSelector
+                  className={"pin"}
+                  onClick={submitPinForm(hiddenForm)}
                 />
               )}
             >
-              <Title as={"h4"} width={"100%"}>
-                123
-              </Title>
+              <Pin name={data.pinType.name} width={"30px"} />
             </HoverForm>
-            <PinDetailStyle.DeleteButton>
-              <MdDelete size={18} />
-            </PinDetailStyle.DeleteButton>
-          </PinDetailStyle.TitleLine>
+          </PinDetailStyle.PinBox>
 
-          <PinDetailStyle.Description>
+          <PinDetailStyle.Wrapper>
+            <PinDetailStyle.TitleLine>
+              <HoverForm
+                className="title"
+                hidden
+                Form={(hiddenForm) => (
+                  <InputForm
+                    type="input"
+                    className="title"
+                    onSubmit={submitInputForm("title", hiddenForm)}
+                  />
+                )}
+              >
+                <Title as={"h4"} width={"100%"}>
+                  {data.title}
+                </Title>
+              </HoverForm>
+              <PinDetailStyle.DeleteButton onClick={handleDeletePin}>
+                <MdDelete size={18} />
+              </PinDetailStyle.DeleteButton>
+            </PinDetailStyle.TitleLine>
+
             <HoverForm
               className="description"
               hidden
@@ -134,45 +138,49 @@ const PinDetail = (props: PinDetailProps) => {
                 <InputForm
                   type="textarea"
                   className="description"
+                  maxLength={200}
                   onSubmit={submitInputForm("description", hiddenForm)}
                 />
               )}
             >
-              123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123
+              <PinDetailStyle.Description>
+                {data.description}
+              </PinDetailStyle.Description>
             </HoverForm>
-          </PinDetailStyle.Description>
 
-          <PinDetailStyle.TotalPrice>
-            <HoverForm
-              className="price"
-              hidden
-              Form={(hiddenForm) => (
-                <InputForm
-                  type="input"
-                  className="price"
-                  onSubmit={submitInputForm("price", hiddenForm)}
-                />
-              )}
-            >
-              비용 : <strong>{numberWithCommas(1000000)}</strong>원
-            </HoverForm>
-          </PinDetailStyle.TotalPrice>
+            <PinDetailStyle.TotalPrice>
+              <HoverForm
+                className="price"
+                hidden
+                Form={(hiddenForm) => (
+                  <InputForm
+                    type="input"
+                    inputMode="number"
+                    className="price"
+                    onSubmit={submitInputForm("price", hiddenForm)}
+                  />
+                )}
+              >
+                비용 : <strong>{numberWithCommas(data.price)}</strong>원
+              </HoverForm>
+            </PinDetailStyle.TotalPrice>
 
-          <Url />
+            <Url pinUrl={data.pinUrl} />
 
-          <ListButton
-            buttons={[
-              { text: "위치 변경", onClick: () => {} },
-              {
-                text: "링크 추가",
-                onClick: handleToggleAddLink,
-              },
-            ]}
-          />
-        </PinDetailStyle.Wrapper>
+            <ListButton
+              buttons={[
+                { text: "위치 변경", onClick: handleUpdatePinPosition },
+                {
+                  text: "링크 추가",
+                  onClick: handleToggleAddLink,
+                },
+              ]}
+            />
+          </PinDetailStyle.Wrapper>
+        </div>
       </PinDetailStyle.Container>
 
-      {isAddLink && <LinkForm onClose={handleCloseAddLink} />}
+      {isAddLink && <LinkForm onClose={handleCloseAddLink} id={data.id} />}
     </>
   );
 };

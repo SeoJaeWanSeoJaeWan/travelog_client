@@ -3,7 +3,7 @@ import { BoardType } from ".";
 
 const boardShow = keyframes`
     from {
-        transform: translateX(calc(-100% ));
+        transform: translateX(-100% );
     }
     to {
         transform: translateX(0);
@@ -15,7 +15,17 @@ const boardHide = keyframes`
         transform: translateX(0);
     }
     to {
-        transform: translateX(calc(-120% ));
+        transform: translateX(-100% );
+
+    }
+`;
+
+const boardOut = keyframes`
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-120% );
         opacity: 0;
     }
 `;
@@ -23,7 +33,7 @@ const boardHide = keyframes`
 const boardAni = {
   show: boardShow,
   hide: boardHide,
-  out: boardHide,
+  out: boardOut,
 };
 
 interface ContainerProps {

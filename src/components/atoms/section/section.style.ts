@@ -39,7 +39,7 @@ const SectionStyle = styled.section`
   max-width: 400px;
 
   margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
 
   border-radius: 10px;
   background-color: ${(props) => props.theme.color.white};

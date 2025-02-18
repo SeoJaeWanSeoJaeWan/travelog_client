@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 const Container = styled.div`
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
-  transform: translateY(calc(-100% - 10px));
+  transform: translateY(calc(100% + 10px));
   z-index: 2;
 
   display: flex;

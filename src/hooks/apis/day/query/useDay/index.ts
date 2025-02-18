@@ -4,10 +4,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 
 const DAY_KEY = "day";
-let prevKey = -1;
-
 const day = (dayId: number) => {
-  prevKey = dayId;
   return GET<Days>(`/day/${dayId}`);
 };
 
@@ -41,7 +38,6 @@ export const useRemoveDay = () => {
   const queryClient = useQueryClient();
 
   const removeDay = (id: number) => {
-    prevKey = -1;
     queryClient.setQueryData([DAY_KEY, id], null);
   };
 

@@ -1,6 +1,8 @@
 import { PUT } from "@/apis";
 import { useMutation } from "@tanstack/react-query";
 import { useRefetchPin } from "../../query/usePin";
+import { useRefetchDay } from "@/hooks/apis/day/query/useDay";
+import { useRefetchLog } from "@/hooks/apis/log/query/useLog";
 
 interface UpdatePin {
   lat: number;
@@ -23,16 +25,25 @@ const useUpdatePin = () => {
   });
 
   const refetchPin = useRefetchPin();
+  const refetchDay = useRefetchDay();
+  const refetchLog = useRefetchLog();
 
-  const submitSuccess = () => {
+  const submitSuccess = (callback: () => void) => () => {
     refetchPin();
+    refetchDay();
+    refetchLog();
+    callback();
   };
 
-  const handleSubmit = (pinId: number, body: UpdatePin) => {
+  const handleSubmit = (
+    pinId: number,
+    body: UpdatePin,
+    onSuccess: () => void
+  ) => {
     mutation.mutate(
       { pinId, body },
       {
-        onSuccess: submitSuccess,
+        onSuccess: submitSuccess(onSuccess),
       }
     );
   };

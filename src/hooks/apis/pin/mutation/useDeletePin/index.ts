@@ -1,6 +1,7 @@
 import { DELETE } from "@/apis";
-import { useRefetchPin } from "../../query/usePin";
 import { useMutation } from "@tanstack/react-query";
+import { useRefetchDay } from "@/hooks/apis/day/query/useDay";
+import { useRefetchLog } from "@/hooks/apis/log/query/useLog";
 
 const deletePin = (pinid: number) => {
   return DELETE(`/pin/${pinid}`);
@@ -11,10 +12,12 @@ const useDeletePin = () => {
     mutationFn: deletePin,
   });
 
-  const refetchPin = useRefetchPin();
+  const refetchDay = useRefetchDay();
+  const refetchLog = useRefetchLog();
 
   const submitSuccess = () => {
-    refetchPin();
+    refetchDay();
+    refetchLog();
   };
 
   const handleSubmit = (pinid: number) => {
