@@ -1,5 +1,5 @@
 import CommonInput from "@/components/atoms/input/input.style";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 const Container = styled.form`
   display: flex;
