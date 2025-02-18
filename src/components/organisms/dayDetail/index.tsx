@@ -16,6 +16,7 @@ import { DndProvider } from "react-dnd";
 import { TouchBackend } from "react-dnd-touch-backend";
 import useDnd from "@/hooks/utils/useDnd";
 import useUpdatePinIndex from "@/hooks/apis/pin/mutation/useUpdatePinIndex";
+import Marker from "@/components/modelcules/marker";
 
 interface DayDetailProps {
   onOutBoard: () => void;
@@ -31,7 +32,7 @@ const DayDetail = (props: DayDetailProps) => {
   const createPin = useCreatePin();
   const updatePin = useUpdatePinIndex();
 
-  const { addRightClick } = useMap();
+  const { addRightClick, updateCenter } = useMap();
   const { onUpdate, onChange } = useDnd();
 
   const [pinTypePosition, setPinTypePosition] = useState<{
@@ -72,6 +73,10 @@ const DayDetail = (props: DayDetailProps) => {
     updatePin(id, { index });
   };
 
+  const handleSelectPin = (id: number, lat: number, lng: number) => {
+    updateCenter(lat, lng);
+  };
+
   return (
     <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
       <ListLayout
@@ -80,7 +85,7 @@ const DayDetail = (props: DayDetailProps) => {
         onDelete={handleDeleteDay}
         onAnimationEnd={() => removeDay(data.id)}
       >
-        {data.pins.map(({ id, index, pinType }) => (
+        {data.pins.map(({ id, lat, lng, index, pinType }) => (
           <Drag
             type={"pin"}
             key={id}
@@ -90,7 +95,7 @@ const DayDetail = (props: DayDetailProps) => {
             onSubmit={onUpdate(handleUpdateDay)}
           >
             {(value) => (
-              <button onClick={() => {}}>
+              <button onClick={() => handleSelectPin(id, lat, lng)}>
                 <Pin name={value.name! as PinName} width={"30px"} />
               </button>
             )}
@@ -113,6 +118,8 @@ const DayDetail = (props: DayDetailProps) => {
           <PinSelector onClick={handleCreatePin} />
         </CustomOverlayMap>
       )}
+
+      <Marker pins={data.pins} onClick={handleSelectPin} />
     </DndProvider>
   );
 };

@@ -1,6 +1,5 @@
-import Pin, { Pins } from "@/components/atoms/pin";
+import Pin from "@/components/atoms/pin";
 import PinSelectorStyle from "./pinSelector.style";
-import { PinName } from "@/types/apis/pinType";
 import usePinType from "@/hooks/apis/pinType/query/usePinType";
 
 interface PinSelectorProps {

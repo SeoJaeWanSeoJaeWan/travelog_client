@@ -12,7 +12,7 @@ import InputForm from "@/components/modelcules/inputForm";
 import usePinFormUpdate from "@/hooks/utils/usePinFormUpdate";
 import Url from "@/components/modelcules/url";
 import { MdDelete } from "react-icons/md";
-import Marker from "@/components/modelcules/marker/indext";
+import Marker from "@/components/modelcules/marker";
 import Line from "@/components/atoms/line";
 import numberWithCommas from "@/utils/numberWithCommas";
 

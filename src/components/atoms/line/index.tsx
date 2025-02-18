@@ -2,7 +2,7 @@ import { color } from "@/styles/theme";
 import { Polyline } from "react-kakao-maps-sdk";
 
 interface LineProps {
-  path: Array<Array<{ lat: number; lng: number }>>;
+  path: Array<{ lat: number; lng: number }>;
 }
 
 const Line = (props: LineProps) => {

@@ -1,4 +1,4 @@
-import PinType from "./pinType";
+import PinType, { PinName } from "./pinType";
 import PinUrl from "./pinUrl";
 
 export interface Pins {
@@ -7,7 +7,7 @@ export interface Pins {
   lat: number;
   lng: number;
   pinIndex: number;
-  pinType: string;
+  pinType: PinName;
 }
 
 interface Pin {

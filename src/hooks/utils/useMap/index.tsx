@@ -59,7 +59,7 @@ export const MapProvider = (props: PropsWithChildren) => {
 
   const updateCenter = (lat: number, lng: number) => {
     if (mapRef.current) {
-      mapRef.current.setCenter(new kakao.maps.LatLng(lat, lng));
+      mapRef.current.panTo(new kakao.maps.LatLng(lat, lng));
     }
   };
 
