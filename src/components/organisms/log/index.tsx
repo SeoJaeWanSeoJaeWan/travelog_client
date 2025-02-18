@@ -7,11 +7,11 @@ import useLogKeys from "@/hooks/utils/useLogKeys";
 import useLogsByKey from "@/hooks/apis/log/query/useLogsByKey";
 import useCreateLog from "@/hooks/apis/log/mutation/useCreateLog";
 import { Days } from "@/types/apis/day";
-import useCheckKey from "@/hooks/apis/log/mutation/useCheckKey";
 import { useState } from "react";
 import useLog from "@/hooks/apis/log/query/useLog";
 import { useRemoveDay } from "@/hooks/apis/day/query/useDay";
 import { useRemovePin } from "@/hooks/apis/pin/query/usePin";
+import LoadLogForm from "@/components/modelcules/loadLogForm";
 
 const getTravelDays = (days: Days[]) => {
   if (days.length === 0) return "여행 계획 중";
@@ -23,13 +23,13 @@ const Log = () => {
   const [selectedLog, setSelectedLog] = useState<number | null>(null);
   const { logKeys, updateLogKeys } = useLogKeys();
   const query = useLogsByKey(logKeys);
+  const [isShowLoad, setIsShowLoad] = useState(false);
 
   const refetchLog = useLog(selectedLog);
   const removeDay = useRemoveDay();
   const removePin = useRemovePin();
 
   const createMutation = useCreateLog();
-  const checkKeyMutation = useCheckKey();
 
   const handleAddLog = () => {
     const title = "새로운 여행";
@@ -40,15 +40,7 @@ const Log = () => {
   };
 
   const handleLoadLog = () => {
-    createModal({
-      text: "여행 코드",
-      type: "form",
-      confirm: (key) => {
-        checkKeyMutation({ key }, ({ key }) => {
-          updateLogKeys(key);
-        });
-      },
-    });
+    setIsShowLoad((prev) => !prev);
   };
 
   const handleSelectLog = (id: number) => {
@@ -72,6 +64,8 @@ const Log = () => {
           <IoMdDownload /> 불러오기
         </LogStyle.Button>
       </LogStyle.ButtonList>
+
+      {isShowLoad && <LoadLogForm />}
 
       <LogStyle.List>
         {query.data &&

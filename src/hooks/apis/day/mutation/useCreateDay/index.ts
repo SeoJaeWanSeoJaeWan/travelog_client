@@ -1,6 +1,7 @@
 import { POST } from "@/apis";
 import { useMutation } from "@tanstack/react-query";
 import { useRefetchLog } from "../../../log/query/useLog";
+import { useRefetchLogsByKey } from "@/hooks/apis/log/query/useLogsByKey";
 
 interface CreateDay {
   index: number;
@@ -16,9 +17,11 @@ const useCreateDay = () => {
     mutationFn: createDay,
   });
   const refetchLog = useRefetchLog();
+  const refetchLogKeys = useRefetchLogsByKey();
 
   const submitSuccess = () => {
     refetchLog();
+    refetchLogKeys();
   };
 
   const handleSubmit = (body: CreateDay) => {

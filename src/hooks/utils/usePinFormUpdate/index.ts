@@ -53,7 +53,7 @@ const usePinFormUpdate = (data: Pin | null) => {
       const form = e.target as HTMLFormElement;
       const formData = new FormData(form);
 
-      const value = formData!.get("data") as string;
+      const value = formData.get("data") as string;
 
       updateMutation(
         data!.id,
