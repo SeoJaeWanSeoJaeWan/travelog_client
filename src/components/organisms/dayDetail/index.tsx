@@ -57,7 +57,7 @@ const DayDetail = (props: DayDetailProps) => {
 
   const handleSelectPosition = () => {
     onOutBoard();
-    addRightClick(mapClick);
+    addRightClick(mapClick, onShowBoard);
   };
 
   const handleCreatePin = (id: number) => {

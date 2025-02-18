@@ -73,7 +73,7 @@ const PinDetail = (props: DayDetailProps) => {
         removeRightClick();
         onShowBoard();
       });
-    });
+    }, onShowBoard);
   };
 
   return (

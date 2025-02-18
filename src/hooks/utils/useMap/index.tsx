@@ -1,4 +1,10 @@
-import { createContext, PropsWithChildren, useContext, useRef } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useRef,
+  useState,
+} from "react";
 import useInfo from "../useInfo";
 
 export interface SearchKeywordResult {
@@ -11,13 +17,19 @@ export interface SearchKeywordResult {
 
 interface MapContextValue {
   map: React.RefObject<kakao.maps.Map | null> | null;
+  clickMapState: boolean;
+  //
   searchKeyword: (
     keyword: string,
     callback: (result: SearchKeywordResult[]) => void
   ) => void;
   updateCenter: (lat: number, lng: number) => void;
-  addRightClick: (callback: (lat: number, lng: number) => void) => void;
+  addRightClick: (
+    callback: (lat: number, lng: number) => void,
+    cancel: () => void
+  ) => void;
   removeRightClick: () => void;
+  cancelRightClick: () => void;
 }
 
 const MapContext = createContext<MapContextValue | null>(null);
@@ -30,6 +42,8 @@ export const MapProvider = (props: PropsWithChildren) => {
   const { children } = props;
   const mapRef = useRef<kakao.maps.Map | null>(null);
   const eventRef = useRef<Function | null>(null);
+  const cancelRef = useRef<Function | null>(null);
+  const [clickMapState, setClickMapState] = useState(false);
   const { createInfo } = useInfo();
 
   const searchKeyword = (
@@ -75,13 +89,19 @@ export const MapProvider = (props: PropsWithChildren) => {
       callback(lat, lng);
     };
 
-  const addRightClick = (callback: (lat: number, lng: number) => void) => {
+  const addRightClick = (
+    success: (lat: number, lng: number) => void,
+    cancel: () => void
+  ) => {
     if (mapRef.current) {
-      const click = rightClick(callback);
+      const click = rightClick(success);
 
       kakao.maps.event.addListener(mapRef.current, "rightclick", click);
       eventRef.current = click;
       createInfo("마우스 오른쪽 클릭을 통해 위치를 지정해주세요.");
+
+      cancelRef.current = cancel;
+      setClickMapState(true);
     }
   };
 
@@ -89,8 +109,17 @@ export const MapProvider = (props: PropsWithChildren) => {
     if (mapRef.current) {
       const click = eventRef.current;
 
-      if (click)
+      if (click) {
         kakao.maps.event.removeListener(mapRef.current, "rightclick", click);
+        setClickMapState(false);
+      }
+    }
+  };
+
+  const cancelRightClick = () => {
+    if (cancelRef.current) {
+      cancelRef.current();
+      removeRightClick();
     }
   };
 
@@ -98,11 +127,13 @@ export const MapProvider = (props: PropsWithChildren) => {
     <MapContext.Provider
       value={{
         map: mapRef,
+        clickMapState,
         //
         searchKeyword,
         updateCenter,
         addRightClick,
         removeRightClick,
+        cancelRightClick,
       }}
     >
       {children}
