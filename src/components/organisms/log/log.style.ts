@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+
   position: relative;
   z-index: 2;
 
@@ -36,8 +39,8 @@ const Button = styled.button`
 `;
 
 const List = styled.ul`
+  flex: 1;
   width: 100%;
-  height: calc(100% - 47px);
 
   overflow-y: auto;
 
