@@ -67,6 +67,20 @@ const DeleteButton = styled.button`
   color: ${(props) => props.theme.color.red};
 `;
 
+const IconBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 90px;
+
+  border-radius: 10px 10px 0 0;
+  border: none;
+
+  color: ${(props) => props.theme.color.gray};
+`;
+
 const Image = styled.img`
   width: 100%;
   height: 90px;
@@ -88,6 +102,7 @@ const PinDetailStyle = {
   Wrapper,
   PinBox,
   Description,
+  IconBox,
   Image,
   TotalPrice,
   TitleLine,

@@ -17,6 +17,7 @@ import { useGetPin, useRemovePin } from "@/hooks/apis/pin/query/usePin";
 import useDeletePin from "@/hooks/apis/pin/mutation/useDeletePin";
 import convertImage from "@/utils/convertImage";
 import useMap from "@/hooks/utils/useMap";
+import { FaImage } from "react-icons/fa6";
 
 interface DayDetailProps {
   onOutBoard: () => void;
@@ -92,7 +93,13 @@ const PinDetail = (props: DayDetailProps) => {
               <ImageUpload onChange={submitFileForm(hiddenForm)} />
             )}
           >
-            <PinDetailStyle.Image src={convertImage(data.picture)} />
+            {data.picture ? (
+              <PinDetailStyle.Image src={convertImage(data.picture)} />
+            ) : (
+              <PinDetailStyle.IconBox>
+                <FaImage size={30} />
+              </PinDetailStyle.IconBox>
+            )}
           </HoverForm>
           <PinDetailStyle.PinBox>
             <HoverForm
