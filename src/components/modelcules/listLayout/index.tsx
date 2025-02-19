@@ -13,7 +13,7 @@ interface ListLayoutProps extends PropsWithChildren {
   price: number;
   isActive: boolean;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
-  onDelete: () => void;
+  onDelete: (callback: () => void) => void;
   onAnimationEnd: () => void;
 }
 
@@ -45,8 +45,8 @@ const ListLayout = (props: ListLayoutProps) => {
   };
 
   const handleDelete = () => {
-    hideLayout();
-    onDelete();
+    // hideLayout();
+    onDelete(hideLayout);
   };
 
   return (

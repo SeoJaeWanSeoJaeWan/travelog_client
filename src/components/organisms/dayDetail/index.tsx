@@ -51,8 +51,8 @@ const DayDetail = (props: DayDetailProps) => {
 
   if (!data) return null;
 
-  const handleDeleteDay = () => {
-    deleteDay(data.id);
+  const handleDeleteDay = (callback: () => void) => {
+    deleteDay(data.id, callback);
   };
 
   const mapClick = (lat: number, lng: number) => {

@@ -40,9 +40,10 @@ const DayList = () => {
     if (selectDay) queryRefetch();
   };
 
-  const handleDeleteLog = () => {
+  const handleDeleteLog = (callback: () => void) => {
     deleteLog(data.id, ({ key }) => {
       removeLogKey(key);
+      callback();
     });
   };
 

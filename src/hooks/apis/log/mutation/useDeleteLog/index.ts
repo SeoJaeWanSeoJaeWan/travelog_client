@@ -14,9 +14,15 @@ const useDeleteLog = () => {
     logId: number,
     onSuccess: (data: { key: string }) => void
   ) => {
-    mutation.mutate(logId, {
-      onSuccess,
-    });
+    const confirm = window.confirm(
+      "여행 일정을 삭제하시겠습니까? \n삭제된 여행 일정은 복구할 수 없습니다."
+    );
+
+    if (confirm) {
+      mutation.mutate(logId, {
+        onSuccess,
+      });
+    }
   };
 
   return handleSubmit;

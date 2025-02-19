@@ -54,8 +54,7 @@ const PinDetail = (props: DayDetailProps) => {
   };
 
   const handleDeletePin = () => {
-    handleClosePin();
-    deletePin(data.id);
+    deletePin(data.id, handleClosePin);
   };
 
   const handleAnimationEnd = () => {

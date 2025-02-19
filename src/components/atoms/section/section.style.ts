@@ -26,9 +26,14 @@ const sectionHideAni = keyframes`
     max-width: 400px;
   }
 
+  70% {
+    margin-left: 10px;
+  }
+
   100% {
     max-width: 0;
     opacity: 0;
+    margin-left: 0;
   }
 `;
 
@@ -48,11 +53,9 @@ const SectionStyle = styled.section`
   overflow: hidden;
 
   animation: ${sectionShowAni} 0.5s forwards;
-  transition: margin 0.3s;
 
   &.hide {
     animation: ${sectionHideAni} 0.5s forwards;
-    margin-left: 0;
   }
 
   > div {
