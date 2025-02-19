@@ -48,7 +48,7 @@ const PrintTemplate = () => {
 
   useEffect(() => {
     if (query.isSuccess) {
-      let imageLoad = {} as ImageLoad;
+      const imageLoad = {} as ImageLoad;
       query.data.days.forEach(({ pins }) => {
         pins.forEach(({ id, picture }) => {
           if (picture) {
@@ -84,12 +84,7 @@ const PrintTemplate = () => {
       </PrintTemplateStyle.TotalPrice>
 
       {data.days.map(({ dayPriceSummary, pins }, idx) => (
-        <PrintTemplateStyle.DayContainer
-          key={idx}
-          onLoad={() => {
-            console.log("???");
-          }}
-        >
+        <PrintTemplateStyle.DayContainer key={idx}>
           <PrintTemplateStyle.DayTitle>
             Day {idx + 1}
           </PrintTemplateStyle.DayTitle>
