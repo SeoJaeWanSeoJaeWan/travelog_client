@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 interface ContainerProps {
   $width: string;
-  $printType: boolean;
 }
 
 const Container = styled.span<ContainerProps>`
@@ -17,8 +16,7 @@ const Container = styled.span<ContainerProps>`
   border-radius: 50%;
   background-color: ${(props) => props.theme.color.primary};
 
-  color: ${(props) =>
-    props.$printType ? "transparent" : props.theme.color.white};
+  color: ${(props) => props.theme.color.white};
 `;
 
 const PinStyle = {

@@ -6,8 +6,6 @@ import { useReactToPrint } from "react-to-print";
 import { useEffect, useRef, useState } from "react";
 import convertImage from "@/utils/convertImage";
 import { createPortal } from "react-dom";
-import Pin from "@/components/atoms/pin";
-import { FaChevronDown } from "react-icons/fa6";
 
 interface PrintProps {
   printLog: number | null;
