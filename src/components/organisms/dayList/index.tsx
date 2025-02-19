@@ -72,6 +72,11 @@ const DayList = () => {
         onAnimationEnd={removeLog}
         onSubmit={handleUpdateLog}
       >
+        <div>
+          <DayListStyle.Day $isCreateButton onClick={handleCreateDay}>
+            <FaPlus />
+          </DayListStyle.Day>
+        </div>
         {data.days.map(({ id, index }) => (
           <Drag
             type={"day"}
@@ -88,12 +93,6 @@ const DayList = () => {
             )}
           </Drag>
         ))}
-
-        <div>
-          <DayListStyle.Day $isCreateButton onClick={handleCreateDay}>
-            <FaPlus />
-          </DayListStyle.Day>
-        </div>
       </ListLayout>
 
       <DragPreview type={"day"}>

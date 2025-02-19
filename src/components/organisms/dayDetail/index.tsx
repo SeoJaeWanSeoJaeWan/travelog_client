@@ -97,6 +97,12 @@ const DayDetail = (props: DayDetailProps) => {
         onDelete={handleDeleteDay}
         onAnimationEnd={removeDay}
       >
+        <button onClick={handleSelectPosition}>
+          <DayDetailStyle.AddPin>
+            <FaPlus />
+          </DayDetailStyle.AddPin>
+        </button>
+
         {data.pins.map(({ id, lat, lng, index, pinType }) => (
           <Drag
             type={"pin"}
@@ -113,12 +119,6 @@ const DayDetail = (props: DayDetailProps) => {
             )}
           </Drag>
         ))}
-
-        <button onClick={handleSelectPosition}>
-          <DayDetailStyle.AddPin>
-            <FaPlus />
-          </DayDetailStyle.AddPin>
-        </button>
       </ListLayout>
 
       <DragPreview type={"pin"}>
