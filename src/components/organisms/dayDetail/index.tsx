@@ -89,6 +89,7 @@ const DayDetail = (props: DayDetailProps) => {
   return (
     <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
       <ListLayout
+        isActive={false}
         title={`Day ${data.index}`}
         price={data.dayPriceSummary}
         onDelete={handleDeleteDay}

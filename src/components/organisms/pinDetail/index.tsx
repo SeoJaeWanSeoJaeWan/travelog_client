@@ -119,6 +119,7 @@ const PinDetail = (props: DayDetailProps) => {
                     type="input"
                     className="title"
                     maxLength={24}
+                    defaultValue={data.title}
                     onSubmit={submitInputForm("title", hiddenForm)}
                   />
                 )}
@@ -140,6 +141,7 @@ const PinDetail = (props: DayDetailProps) => {
                   type="textarea"
                   className="description"
                   maxLength={200}
+                  defaultValue={data.description}
                   onSubmit={submitInputForm("description", hiddenForm)}
                 />
               )}
@@ -158,6 +160,7 @@ const PinDetail = (props: DayDetailProps) => {
                     type="input"
                     inputMode="number"
                     className="price"
+                    defaultValue={data.price.toString()}
                     onSubmit={submitInputForm("price", hiddenForm)}
                   />
                 )}

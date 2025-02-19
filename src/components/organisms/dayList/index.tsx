@@ -7,13 +7,14 @@ import useDeleteLog from "@/hooks/apis/log/mutation/useDeleteLog";
 import useLogKeys from "@/hooks/utils/useLogKeys";
 import useCreateDay from "@/hooks/apis/day/mutation/useCreateDay";
 import useUpdateDay from "@/hooks/apis/day/mutation/useUpdateDay";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import DragPreview from "@/components/atoms/dragPreview";
 import useDay from "@/hooks/apis/day/query/useDay";
 import { DndProvider } from "react-dnd";
 import { TouchBackend } from "react-dnd-touch-backend";
 import useDnd from "@/hooks/utils/useDnd";
 import { useRemovePin } from "@/hooks/apis/pin/query/usePin";
+import useUpdateLog from "@/hooks/apis/log/mutation/useUpdateLog";
 
 const DayList = () => {
   const data = useGetLog();
@@ -22,6 +23,7 @@ const DayList = () => {
   const createDay = useCreateDay();
   const updateDay = useUpdateDay();
   const removePin = useRemovePin();
+  const updateLog = useUpdateLog();
   const { removeLogKey } = useLogKeys();
 
   const [selectDay, setSelectDay] = useState<number | null>(null);
@@ -52,13 +54,23 @@ const DayList = () => {
     updateDay(id, { index });
   };
 
+  const handleUpdateLog = (e: FormEvent<HTMLFormElement>) => {
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const title = formData.get("data") as string;
+
+    updateLog(data.id, { title });
+  };
+
   return (
     <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
       <ListLayout
+        isActive={true}
         title={data.title}
         price={data.logPriceSummary}
         onDelete={handleDeleteLog}
         onAnimationEnd={removeLog}
+        onSubmit={handleUpdateLog}
       >
         {data.days.map(({ id, index }) => (
           <Drag

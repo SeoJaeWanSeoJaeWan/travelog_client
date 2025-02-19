@@ -5,14 +5,15 @@ interface HoverFormProps extends PropsWithChildren {
   className: string;
   radius?: string;
   hidden?: boolean;
+  isActive?: boolean;
   Form: (hiddenForm: () => void) => JSX.Element;
 }
 
 const HoverForm = (props: HoverFormProps) => {
-  const { children, radius, Form, className } = props;
+  const { children, radius, hidden, isActive = true, className, Form } = props;
   const [isActiveForm, setIsActiveForm] = useState(false);
 
-  const isHiddenChildren = isActiveForm && props.hidden;
+  const isHiddenChildren = isActiveForm && hidden;
 
   const handleToggleForm = () => {
     setIsActiveForm(!isActiveForm);
@@ -45,11 +46,13 @@ const HoverForm = (props: HoverFormProps) => {
       {!isHiddenChildren && (
         <HoverFormStyle.Container className={className}>
           {children}
-          <HoverFormStyle.Background
-            type={"button"}
-            $radius={radius}
-            onClick={handleToggleForm}
-          />
+          {isActive && (
+            <HoverFormStyle.Background
+              type={"button"}
+              $radius={radius}
+              onClick={handleToggleForm}
+            />
+          )}
         </HoverFormStyle.Container>
       )}
       {isActiveForm && Form(hiddenForm)}

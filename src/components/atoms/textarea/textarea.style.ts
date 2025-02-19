@@ -4,7 +4,7 @@ const CommonTextArea = styled.textarea`
   width: 100%;
   height: 100%;
 
-  padding: 5px 10px;
+  padding: 5px 5px;
 
   border: 1px solid ${(props) => props.theme.color.darkGray};
   border-radius: 5px;

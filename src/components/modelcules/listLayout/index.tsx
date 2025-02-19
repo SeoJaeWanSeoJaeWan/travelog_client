@@ -1,20 +1,32 @@
-import { PropsWithChildren, useRef } from "react";
+import { FormEvent, PropsWithChildren, useRef } from "react";
 import Title from "../../atoms/title";
 import ListLayoutStyle from "./listLayout.style";
 import Line from "@/components/atoms/line/line.style";
 import Close from "@/components/atoms/close";
 import numberWithCommas from "@/utils/numberWithCommas";
 import { MdDelete } from "react-icons/md";
+import HoverForm from "@/components/atoms/hoverForm";
+import InputForm from "../inputForm";
 
 interface ListLayoutProps extends PropsWithChildren {
   title: string;
   price: number;
+  isActive: boolean;
+  onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   onDelete: () => void;
   onAnimationEnd: () => void;
 }
 
 const ListLayout = (props: ListLayoutProps) => {
-  const { title, price, children, onDelete, onAnimationEnd } = props;
+  const {
+    title,
+    price,
+    children,
+    isActive,
+    onSubmit,
+    onDelete,
+    onAnimationEnd,
+  } = props;
   const listRef = useRef<HTMLDivElement>(null);
 
   const hideLayout = () => {
@@ -43,8 +55,25 @@ const ListLayout = (props: ListLayoutProps) => {
       onAnimationEnd={handleAnimationEnd(onAnimationEnd)}
     >
       <div>
-        <Title as={"h3"} width={"90%"}>
-          {title}
+        <Title as={"h3"} width={"fit-content"}>
+          <HoverForm
+            hidden
+            className={"title"}
+            isActive={isActive}
+            Form={(hiddenForm) => (
+              <InputForm
+                type={"input"}
+                className={"title"}
+                defaultValue={title}
+                onSubmit={(e) => {
+                  if (onSubmit) onSubmit(e);
+                  hiddenForm();
+                }}
+              />
+            )}
+          >
+            {title}
+          </HoverForm>
         </Title>
         <Line />
 
