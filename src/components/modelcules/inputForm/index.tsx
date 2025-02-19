@@ -22,7 +22,7 @@ const InputForm = (props: InputFormProps) => {
 
   useEffect(() => {
     if (ref.current) {
-      ref.current.focus();
+      ref.current.select();
     }
   }, []);
 

@@ -2,7 +2,6 @@ import { IoMdDownload } from "react-icons/io";
 import LogStyle from "./log.style";
 import { FaPlus, FaPrint } from "react-icons/fa6";
 import Title from "@/components/atoms/title";
-import { BiExport } from "react-icons/bi";
 import useLogKeys from "@/hooks/utils/useLogKeys";
 import useLogsByKey from "@/hooks/apis/log/query/useLogsByKey";
 import useCreateLog from "@/hooks/apis/log/mutation/useCreateLog";
@@ -13,6 +12,7 @@ import { useRemoveDay } from "@/hooks/apis/day/query/useDay";
 import { useRemovePin } from "@/hooks/apis/pin/query/usePin";
 import LoadLogForm from "@/components/modelcules/loadLogForm";
 import KakaoShare from "@/utils/kakaoShare";
+import { PiExportBold } from "react-icons/pi";
 
 const getTravelDays = (days: Days[]) => {
   if (days.length === 0) return "여행 계획 중";
@@ -101,7 +101,7 @@ const Log = () => {
                 <FaPrint size={20} />
               </LogStyle.PrintButton>
               <LogStyle.SaveButton onClick={() => KakaoShare(key)}>
-                <BiExport size={20} />
+                <PiExportBold size={22} />
               </LogStyle.SaveButton>
             </li>
           ))}
