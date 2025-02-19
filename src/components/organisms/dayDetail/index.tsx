@@ -9,7 +9,7 @@ import Pin from "@/components/atoms/pin";
 import { PinName } from "@/types/apis/pinType";
 import DragPreview from "@/components/atoms/dragPreview";
 import useMap from "@/hooks/utils/useMap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CustomOverlayMap } from "react-kakao-maps-sdk";
 import PinSelector from "@/components/modelcules/pinSelector";
 import { DndProvider } from "react-dnd";
@@ -37,13 +37,17 @@ const DayDetail = (props: DayDetailProps) => {
 
   const queryRefetch = usePin(selectPin);
 
-  const { addRightClick, removeRightClick, updateCenter } = useMap();
+  const { clickMapState, addRightClick, updateCenter } = useMap();
   const { onUpdate, onChange } = useDnd();
 
   const [pinTypePosition, setPinTypePosition] = useState<{
     lat: number;
     lng: number;
   } | null>(null);
+
+  useEffect(() => {
+    if (!clickMapState) setPinTypePosition(null);
+  }, [clickMapState]);
 
   if (!data) return null;
 
@@ -69,8 +73,6 @@ const DayDetail = (props: DayDetailProps) => {
       index: data.pins.length + 1,
     });
 
-    onShowBoard();
-    removeRightClick();
     setPinTypePosition(null);
   };
 
