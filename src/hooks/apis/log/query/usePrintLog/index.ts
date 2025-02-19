@@ -1,6 +1,7 @@
 import { GET } from "@/apis";
 import { PrintLog } from "@/types/apis/log";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+
 const PRINT_LOG_KEY = "print_log";
 
 const log = (logId: number) => {
@@ -8,7 +9,6 @@ const log = (logId: number) => {
 };
 
 const usePrintLog = (id: number | null) => {
-  console.log(id);
   const query = useQuery({
     queryKey: [PRINT_LOG_KEY, id],
     enabled: !!id,
@@ -16,6 +16,16 @@ const usePrintLog = (id: number | null) => {
   });
 
   return query;
+};
+
+export const useRefetchPrintLog = () => {
+  const queryClient = useQueryClient();
+
+  const refetching = () => {
+    queryClient.invalidateQueries({ queryKey: [PRINT_LOG_KEY] });
+  };
+
+  return refetching;
 };
 
 export default usePrintLog;

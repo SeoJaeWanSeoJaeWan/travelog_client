@@ -161,7 +161,7 @@ const PinConteinr = styled.div`
   margin-bottom: 50px;
 `;
 
-const PrintStyle = {
+const PrintTemplateStyle = {
   Container,
   Title,
   TotalPrice,
@@ -179,4 +179,4 @@ const PrintStyle = {
   PinConteinr,
 };
 
-export default PrintStyle;
+export default PrintTemplateStyle;

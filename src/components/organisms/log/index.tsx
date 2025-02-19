@@ -12,7 +12,6 @@ import useLog from "@/hooks/apis/log/query/useLog";
 import { useRemoveDay } from "@/hooks/apis/day/query/useDay";
 import { useRemovePin } from "@/hooks/apis/pin/query/usePin";
 import LoadLogForm from "@/components/modelcules/loadLogForm";
-import Print from "@/components/modelcules/print";
 
 const getTravelDays = (days: Days[]) => {
   if (days.length === 0) return "여행 계획 중";
@@ -24,7 +23,6 @@ const Log = () => {
   const [selectedLog, setSelectedLog] = useState<number | null>(null);
   const { logKeys, updateLogKeys } = useLogKeys();
   const [isShowLoad, setIsShowLoad] = useState(false);
-  const [printLog, setPrintLog] = useState<number | null>(null);
   const query = useLogsByKey(logKeys);
 
   const refetchLog = useLog(selectedLog);
@@ -56,48 +54,58 @@ const Log = () => {
     }
   };
 
-  const clearPrint = () => {
-    setPrintLog(null);
+  const handlePrintLog = (id: number) => {
+    const newTab = window.open(
+      `${import.meta.env.VITE_CLIENT_URL}/print`,
+      "_blank"
+    );
+
+    if (newTab) {
+      newTab.onload = () => {
+        newTab.postMessage(
+          { id, type: "child" },
+          import.meta.env.VITE_CLIENT_URL
+        );
+      };
+    }
   };
 
   return (
-    <>
-      <LogStyle.Container>
-        <LogStyle.ButtonList>
-          <LogStyle.Button onClick={handleAddLog}>
-            <FaPlus /> 추가
-          </LogStyle.Button>
-          <LogStyle.Button onClick={handleLoadLog}>
-            <IoMdDownload /> 불러오기
-          </LogStyle.Button>
-        </LogStyle.ButtonList>
+    <LogStyle.Container>
+      <LogStyle.ButtonList>
+        <LogStyle.Button onClick={handleAddLog}>
+          <FaPlus /> 추가
+        </LogStyle.Button>
+        <LogStyle.Button onClick={handleLoadLog}>
+          <IoMdDownload /> 불러오기
+        </LogStyle.Button>
+      </LogStyle.ButtonList>
 
-        {isShowLoad && <LoadLogForm />}
+      {isShowLoad && <LoadLogForm />}
 
-        <LogStyle.List>
-          {query.data &&
-            query.data.map(({ id, title, days }) => (
-              <li key={id}>
-                <LogStyle.Item onClick={() => handleSelectLog(id)}>
-                  <Title width={"100%"} as="p" className={"text-ellipsis"}>
-                    {title}
-                  </Title>
-                  <LogStyle.TotalPrice>
-                    {getTravelDays(days)}
-                  </LogStyle.TotalPrice>
-                </LogStyle.Item>
-                <LogStyle.PrintButton onClick={() => setPrintLog(id)}>
-                  <FaPrint size={20} />
-                </LogStyle.PrintButton>
-                <LogStyle.SaveButton>
-                  <BiExport size={20} />
-                </LogStyle.SaveButton>
-              </li>
-            ))}
-        </LogStyle.List>
-      </LogStyle.Container>
-      {printLog && <Print printLog={printLog} clearPrint={clearPrint} />}
-    </>
+      <LogStyle.List>
+        {query.data &&
+          query.data.map(({ id, title, days }) => (
+            <li key={id}>
+              <LogStyle.Item
+                onClick={() => handleSelectLog(id)}
+                $isActive={id === selectedLog}
+              >
+                <Title width={"100%"} as="p" className={"text-ellipsis"}>
+                  {title}
+                </Title>
+                <LogStyle.TotalPrice>{getTravelDays(days)}</LogStyle.TotalPrice>
+              </LogStyle.Item>
+              <LogStyle.PrintButton onClick={() => handlePrintLog(id)}>
+                <FaPrint size={20} />
+              </LogStyle.PrintButton>
+              <LogStyle.SaveButton>
+                <BiExport size={20} />
+              </LogStyle.SaveButton>
+            </li>
+          ))}
+      </LogStyle.List>
+    </LogStyle.Container>
   );
 };
 

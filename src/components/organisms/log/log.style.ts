@@ -49,12 +49,19 @@ const List = styled.ul`
   }
 `;
 
-const Item = styled.button`
+interface ItemProps {
+  $isActive: boolean;
+}
+
+const Item = styled.button<ItemProps>`
   display: flex;
   flex-direction: column;
 
   width: 100%;
   padding: 15px 10px;
+
+  background-color: ${(props) =>
+    props.$isActive ? props.theme.color.lightGray : props.theme.color.white};
 
   transition: background-color 0.3s;
 
@@ -71,6 +78,12 @@ const SaveButton = styled.button`
 
   width: 24px;
   height: 24px;
+
+  color: ${(props) => props.theme.color.gray};
+
+  &:hover {
+    color: ${(props) => props.theme.color.darkGray};
+  }
 `;
 
 const PrintButton = styled.button`
@@ -81,6 +94,12 @@ const PrintButton = styled.button`
 
   width: 24px;
   height: 24px;
+
+  color: ${(props) => props.theme.color.gray};
+
+  &:hover {
+    color: ${(props) => props.theme.color.darkGray};
+  }
 `;
 
 const TotalPrice = styled.p`
