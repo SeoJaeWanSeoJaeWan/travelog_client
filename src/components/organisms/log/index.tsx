@@ -12,6 +12,7 @@ import useLog from "@/hooks/apis/log/query/useLog";
 import { useRemoveDay } from "@/hooks/apis/day/query/useDay";
 import { useRemovePin } from "@/hooks/apis/pin/query/usePin";
 import LoadLogForm from "@/components/modelcules/loadLogForm";
+import KakaoShare from "@/utils/kakaoShare";
 
 const getTravelDays = (days: Days[]) => {
   if (days.length === 0) return "여행 계획 중";
@@ -85,7 +86,7 @@ const Log = () => {
 
       <LogStyle.List>
         {query.data &&
-          query.data.map(({ id, title, days }) => (
+          query.data.map(({ id, title, days, key }) => (
             <li key={id}>
               <LogStyle.Item
                 onClick={() => handleSelectLog(id)}
@@ -99,7 +100,7 @@ const Log = () => {
               <LogStyle.PrintButton onClick={() => handlePrintLog(id)}>
                 <FaPrint size={20} />
               </LogStyle.PrintButton>
-              <LogStyle.SaveButton>
+              <LogStyle.SaveButton onClick={() => KakaoShare(key)}>
                 <BiExport size={20} />
               </LogStyle.SaveButton>
             </li>
