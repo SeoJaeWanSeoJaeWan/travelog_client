@@ -56,41 +56,48 @@ const Log = () => {
     }
   };
 
+  const clearPrint = () => {
+    setPrintLog(null);
+  };
+
   return (
-    <LogStyle.Container>
-      <LogStyle.ButtonList>
-        <LogStyle.Button onClick={handleAddLog}>
-          <FaPlus /> 추가
-        </LogStyle.Button>
-        <LogStyle.Button onClick={handleLoadLog}>
-          <IoMdDownload /> 불러오기
-        </LogStyle.Button>
-      </LogStyle.ButtonList>
+    <>
+      <LogStyle.Container>
+        <LogStyle.ButtonList>
+          <LogStyle.Button onClick={handleAddLog}>
+            <FaPlus /> 추가
+          </LogStyle.Button>
+          <LogStyle.Button onClick={handleLoadLog}>
+            <IoMdDownload /> 불러오기
+          </LogStyle.Button>
+        </LogStyle.ButtonList>
 
-      {isShowLoad && <LoadLogForm />}
+        {isShowLoad && <LoadLogForm />}
 
-      <LogStyle.List>
-        {query.data &&
-          query.data.map(({ id, title, days }) => (
-            <li key={id}>
-              <LogStyle.Item onClick={() => handleSelectLog(id)}>
-                <Title width={"100%"} as="p" className={"text-ellipsis"}>
-                  {title}
-                </Title>
-                <LogStyle.TotalPrice>{getTravelDays(days)}</LogStyle.TotalPrice>
-              </LogStyle.Item>
-              <LogStyle.PrintButton onClick={() => setPrintLog(id)}>
-                <FaPrint size={20} />
-              </LogStyle.PrintButton>
-              <LogStyle.SaveButton>
-                <BiExport size={20} />
-              </LogStyle.SaveButton>
-            </li>
-          ))}
-      </LogStyle.List>
-
-      {printLog && <Print printLog={printLog} />}
-    </LogStyle.Container>
+        <LogStyle.List>
+          {query.data &&
+            query.data.map(({ id, title, days }) => (
+              <li key={id}>
+                <LogStyle.Item onClick={() => handleSelectLog(id)}>
+                  <Title width={"100%"} as="p" className={"text-ellipsis"}>
+                    {title}
+                  </Title>
+                  <LogStyle.TotalPrice>
+                    {getTravelDays(days)}
+                  </LogStyle.TotalPrice>
+                </LogStyle.Item>
+                <LogStyle.PrintButton onClick={() => setPrintLog(id)}>
+                  <FaPrint size={20} />
+                </LogStyle.PrintButton>
+                <LogStyle.SaveButton>
+                  <BiExport size={20} />
+                </LogStyle.SaveButton>
+              </li>
+            ))}
+        </LogStyle.List>
+      </LogStyle.Container>
+      {printLog && <Print printLog={printLog} clearPrint={clearPrint} />}
+    </>
   );
 };
 

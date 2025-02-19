@@ -13,6 +13,7 @@ const queryClient = new QueryClient({
       refetchOnMount: false,
       refetchOnReconnect: false,
       retry: false,
+      staleTime: 0,
     },
     mutations: {
       onError: mutationError,

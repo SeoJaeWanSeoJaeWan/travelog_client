@@ -6,6 +6,7 @@ import { IoAirplane } from "react-icons/io5";
 import { MdFastfood } from "react-icons/md";
 import PinStyle from "./pin.style";
 import { IconType } from "react-icons";
+import { color } from "@/styles/theme";
 
 export const Pins: Record<PinName, IconType> = {
   식사: MdFastfood,
@@ -23,15 +24,16 @@ export const Pins: Record<PinName, IconType> = {
 interface PinProps {
   name: PinName;
   width: string;
+  printType: boolean;
 }
 
 const Pin = (props: PinProps) => {
-  const { name, width } = props;
+  const { name, width, printType } = props;
 
   const Icon = Pins[name];
 
   return (
-    <PinStyle.Container $width={width}>
+    <PinStyle.Container $width={width} $printType={printType}>
       <Icon size={20} />
     </PinStyle.Container>
   );

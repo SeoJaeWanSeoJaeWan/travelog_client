@@ -71,6 +71,7 @@ const Global = styled.createGlobalStyle`
     word-break: break-all;
   }
 
+  #print,
   #modal,
   #info {
     position: relative;

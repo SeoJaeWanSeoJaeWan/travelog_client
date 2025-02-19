@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 10000;
 
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
 
   background-color: white;
 
@@ -29,7 +29,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 
   font-size: ${(props) => props.theme.font(24)};
   font-weight: bold;
@@ -42,7 +42,7 @@ const TotalPrice = styled.p`
   text-align: right;
 
   padding-bottom: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 
   border-bottom: 1px solid ${(props) => props.theme.color.gray};
 
@@ -53,10 +53,10 @@ const TotalPrice = styled.p`
 `;
 
 const DayTitle = styled.h2`
-  font-size: ${(props) => props.theme.font(18)};
+  font-size: ${(props) => props.theme.font(20)};
   font-weight: 600;
 
-  margin-top: 10px;
+  margin-bottom: 20px;
 `;
 
 const DayPrice = styled.p`
@@ -68,7 +68,7 @@ const DayPrice = styled.p`
 const PinContentContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
 `;
 
 const PinContentBox = styled.div`
@@ -77,18 +77,32 @@ const PinContentBox = styled.div`
 
 const PinImage = styled.img`
   width: 200px;
-  height: auto;
-  aspect-ratio: 4/3;
-
+  height: 150px;
   object-fit: cover;
+
+  border-radius: 10px;
 `;
 
 const PinTitle = styled.h3`
-  font-size: ${(props) => props.theme.font(16)};
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  font-size: ${(props) => props.theme.font(24)};
   font-weight: 600;
+
+  margin-bottom: 10px;
 `;
 
 const PinDescription = styled.p`
+  min-height: 150px;
+
+  padding: 10px 0;
+
+  border-top: 1px solid ${(props) => props.theme.color.gray};
+  border-bottom: 1px solid ${(props) => props.theme.color.gray};
+
   font-size: ${(props) => props.theme.font(14)};
   font-weight: 500;
   white-space: pre-line;
@@ -96,16 +110,18 @@ const PinDescription = styled.p`
 
 const PinPrice = styled.p`
   font-size: ${(props) => props.theme.font(14)};
-  font-weight: 400;
-  text-align: right;
+  font-weight: 500;
+  text-align: left;
+
+  margin: 10px 0;
 `;
 
 const PinUrlContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const PinUrl = styled.div`
@@ -120,7 +136,29 @@ const PinUrl = styled.div`
     margin-top: 5px;
     font-size: ${(props) => props.theme.font(12)};
     font-weight: 600;
+    text-align: center;
+    word-break: keep-all;
   }
+`;
+
+const DayContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  break-after: page;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
+
+const PinConteinr = styled.div`
+  position: relative;
+  break-inside: avoid;
+
+  width: 100%;
+  margin-bottom: 50px;
 `;
 
 const PrintStyle = {
@@ -137,6 +175,8 @@ const PrintStyle = {
   PinPrice,
   PinUrlContainer,
   PinUrl,
+  DayContainer,
+  PinConteinr,
 };
 
 export default PrintStyle;
