@@ -1,45 +1,45 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 const customAxios = axios.create({
-  baseURL: `${import.meta.env.API_URL}/api`,
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-const GET = async <T>(url: string): Promise<AxiosResponse<T>> => {
+const GET = async <T>(url: string): Promise<T> => {
   const res = await customAxios.get(url);
 
-  return res;
+  return res.data;
 };
 
 const POST = async <T>(url: string, body?: T, contentType?: string) => {
-  const { data } = await customAxios.post(url, body, {
+  const res = await customAxios.post(url, body, {
     headers: {
       "Content-Type": contentType || "application/json",
     },
   });
 
-  return data;
+  return res.data;
 };
 
 const PATCH = async <T>(url: string, body?: T) => {
-  const { data } = await customAxios.patch(url, body);
+  const res = await customAxios.patch(url, body);
 
-  return data;
+  return res.data;
 };
 
 const PUT = async <T>(url: string, body?: T) => {
-  const { data } = await customAxios.put(url, body);
+  const res = await customAxios.put(url, body);
 
-  return data;
+  return res.data;
 };
 
 const DELETE = async (url: string) => {
-  const { data } = await customAxios.delete(url);
+  const res = await customAxios.delete(url);
 
-  return data;
+  return res.data;
 };
 
 export { GET, POST, PUT, PATCH, DELETE };

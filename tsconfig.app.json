@@ -24,7 +24,8 @@
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"]
-    }
+    },
+    "types": ["kakao.maps.d.ts"]
   },
   "include": ["src"]
 }
